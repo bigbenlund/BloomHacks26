@@ -1,5 +1,10 @@
 /**
  * EcoShield SecureRoute - Firestore Seeding Utility (Modular Admin SDK Version)
+ * 
+ * To run this script with a custom JSON file:
+ *   node scripts/seed-firestore.js ./backend/chargers.json
+ * 
+ * If no argument is provided, it defaults to seeding the 6 Santa Monica template nodes.
  */
 
 const { initializeApp, cert } = require('firebase-admin');
@@ -22,11 +27,10 @@ initializeApp({
   credential: cert(serviceAccount)
 });
 
-// Use the default database instance
 const db = getFirestore();
 
-// Compliant Santa Monica charger dataset matching the current React Native interface schema
-const chargerData = [
+// Default Santa Monica dataset
+const defaultSantaMonicaData = [
   {
     id: 'charger-1',
     name: 'EcoShield Santa Monica Central',
@@ -142,6 +146,102 @@ const chargerData = [
     }
   }
 ];
+
+// Determine input dataset
+let chargerData = defaultSantaMonicaData;
+const customPathArg = process.argv[2];
+
+if (customPathArg) {
+  const resolvedPath = path.resolve(process.cwd(), customPathArg);
+  if (!fs.existsSync(resolvedPath)) {
+    console.error(`\n❌ ERROR: Custom JSON file not found at path: "${resolvedPath}"\n`);
+    process.exit(1);
+  }
+  
+  try {
+    const rawContent = fs.readFileSync(resolvedPath, 'utf8');
+    const parsedData = JSON.parse(rawContent);
+    
+    if (!Array.isArray(parsedData)) {
+      throw new Error("JSON file root must be an array of charger objects.");
+    }
+    
+    // Auto-convert schemas on the fly if backend-formatted data is detected
+    chargerData = parsedData.map((item, index) => {
+      // Check if it is backend-formatted (has .location but no flat .latitude)
+      const isBackendSchema = item.location && typeof item.location.lat === 'number' && typeof item.latitude !== 'number';
+      
+      if (isBackendSchema) {
+        // Map STATUS: SAFE -> secure, WARNING -> compromised, COMPROMISED -> compromised
+        let status = 'secure';
+        if (item.status === 'WARNING' || item.status === 'COMPROMISED') {
+          status = 'compromised';
+        }
+
+        let riskLevel = 'none';
+        if (item.status === 'WARNING') {
+          riskLevel = 'high';
+        } else if (item.status === 'COMPROMISED') {
+          riskLevel = 'critical';
+        }
+
+        // Compile findings detail summaries
+        let details = item.recommendation || 'No major findings.';
+        if (item.findings && item.findings.length > 0) {
+          details = item.findings.map((f) => `${f.title}\nSeverity: ${f.severity} | Risk: +${f.risk_points} pts\nEvidence: ${f.evidence}`).join('\n\n');
+        }
+
+        return {
+          id: String(item.id || `orlando-${index}`),
+          name: item.name || `Orlando Node #${index}`,
+          latitude: item.location.lat,
+          longitude: item.location.lng,
+          status: status,
+          riskLevel: riskLevel,
+          power: item.telemetry && item.telemetry.event_count ? `Log Events: ${item.telemetry.event_count}` : '150 kW DC Fast',
+          plugs: ['CCS2', 'NACS'],
+          price: '$0.30/kWh',
+          address: (item.name || 'Orlando Node') + ' - Orlando Grid Node',
+          securityAlert: {
+            cve: item.findings && item.findings.length > 0 ? item.findings[0].code : (item.status === 'SAFE' ? 'SECURE-NODE' : 'VULN-NODE'),
+            score: (item.risk || 0) / 10,
+            title: item.findings && item.findings.length > 0 ? item.findings[0].title : (item.status === 'SAFE' ? 'Grid-Secure Firmware Verified' : 'Vulnerable Firmware Profile'),
+            details: details,
+            recommendation: item.recommendation || 'No advisories'
+          }
+        };
+      }
+      
+      // If it's already in the frontend schema format, return as is
+      return {
+        id: String(item.id || `node-${index}`),
+        name: item.name || 'Unnamed Station',
+        latitude: item.latitude || 34.0,
+        longitude: item.longitude || -118.0,
+        status: item.status === 'compromised' ? 'compromised' : 'secure',
+        riskLevel: item.riskLevel || 'none',
+        power: item.power || '150 kW DC Fast',
+        plugs: Array.isArray(item.plugs) ? item.plugs : ['CCS2', 'NACS'],
+        price: item.price || '$0.30/kWh',
+        address: item.address || 'Santa Monica, CA',
+        securityAlert: item.securityAlert ? {
+          cve: item.securityAlert.cve || 'N/A',
+          score: typeof item.securityAlert.score === 'number' ? item.securityAlert.score : 0,
+          title: item.securityAlert.title || 'Protected Firmware',
+          details: item.securityAlert.details || 'No security alerts.',
+          recommendation: item.securityAlert.recommendation || 'Perfect security compliance.'
+        } : undefined
+      };
+    });
+    
+    console.log(`✅ Loaded and parsed custom dataset from: "${resolvedPath}" (${chargerData.length} records processed).`);
+  } catch (err) {
+    console.error(`\n❌ ERROR: Failed to parse custom JSON file:`, err.message, `\n`);
+    process.exit(1);
+  }
+} else {
+  console.log('💡 Information: No custom JSON file specified. Seeding standard Santa Monica mock dataset.');
+}
 
 async function seed() {
   console.log(`\n🚀 Starting admin database seeding to collection "chargers" (total: ${chargerData.length} records)...`);
