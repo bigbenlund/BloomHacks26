@@ -125,7 +125,7 @@ export function EVMap({ chargers, selectedCharger, onSelectCharger, routeToCharg
       if (!script) {
         script = document.createElement('script');
         script.id = scriptId;
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=geometry,directions`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=geometry`;
         script.async = true;
         script.defer = true;
         script.onload = initializeMap;

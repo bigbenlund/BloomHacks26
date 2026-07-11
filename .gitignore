@@ -44,3 +44,4 @@ example
 
 # Firebase
 .firebase/
+service-account.json

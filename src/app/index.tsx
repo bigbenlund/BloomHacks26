@@ -8,6 +8,8 @@ import {
   Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '@/config/firebase';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -157,80 +159,64 @@ export default function SecurityDashboardScreen() {
     return 'ACQUIRING POSITION...';
   });
 
-  // Request browser geolocation on mount and fetch backend chargers
+  // Request browser geolocation on mount and fetch Firestore chargers
   useEffect(() => {
+    let unsubscribeFirestore: (() => void) | undefined;
+
     const loadLocalFallback = (lat: number, lng: number) => {
       const mockList = createMockChargers(lat, lng);
       setChargers(mockList);
     };
 
-    const loadFromBackend = async (userLat: number, userLng: number) => {
+    const loadFromFirestore = (userLat: number, userLng: number) => {
+      setGpsStatus('CONNECTING TO FIRESTORE...');
       try {
-        setGpsStatus('FETCHING GRID METADATA...');
-        const response = await fetch('http://localhost:8000/chargers');
-        if (response.ok) {
-          const data = await response.json();
-          const mapped = data.map((item: any) => {
-            const hasLocation = item.location && typeof item.location.lat === 'number' && typeof item.location.lng === 'number';
-            const lat = hasLocation ? item.location.lat : userLat;
-            const lng = hasLocation ? item.location.lng : userLng;
-            
-            // Map STATUS: SAFE -> secure, WARNING -> warning, COMPROMISED -> compromised
-            let status: 'secure' | 'compromised' = 'secure';
-            if (item.status === 'WARNING' || item.status === 'COMPROMISED') {
-              status = 'compromised';
-            }
-
-            let riskLevel: 'none' | 'high' | 'critical' = 'none';
-            if (item.status === 'WARNING') {
-              riskLevel = 'high';
-            } else if (item.status === 'COMPROMISED') {
-              riskLevel = 'critical';
-            }
-
-            // Combine all findings into a details string
-            let details = item.recommendation || 'No major findings.';
-            if (item.findings && item.findings.length > 0) {
-              details = item.findings.map((f: any) => `${f.title}\nSeverity: ${f.severity} | Risk: +${f.risk_points} pts\nEvidence: ${f.evidence}`).join('\n\n');
-            }
-
-            return {
-              id: String(item.id),
-              name: item.name,
-              latitude: lat,
-              longitude: lng,
-              status,
-              riskLevel,
-              power: item.telemetry && item.telemetry.event_count ? `Log Events: ${item.telemetry.event_count}` : '150 kW DC Fast',
-              plugs: ['CCS2', 'NACS'],
-              price: '$0.30/kWh',
-              address: item.name + ' - Orlando Grid Node',
-              securityAlert: {
-                cve: item.findings && item.findings.length > 0 ? item.findings[0].code : (item.status === 'SAFE' ? 'SECURE-NODE' : 'VULN-NODE'),
-                score: item.risk / 10,
-                title: item.findings && item.findings.length > 0 ? item.findings[0].title : (item.status === 'SAFE' ? 'Grid-Secure Firmware Verified' : 'Vulnerable Firmware Profile'),
-                details,
-                recommendation: item.recommendation
-              }
-            };
-          });
-
-          setChargers(mapped);
-          setGpsStatus('API GRID CONNECTION ACTIVE');
-          
-          // Let's set the user location to Orlando so that the map centers on the real backend chargers!
-          if (mapped.length > 0) {
-            setUserLocation({
-              latitude: 28.5383, // Orlando Latitude
-              longitude: -81.3792 // Orlando Longitude
+        const chargersCol = collection(db, 'chargers');
+        
+        // Listen to active updates in Firestore
+        const unsubscribe = onSnapshot(chargersCol, (snapshot) => {
+          if (!snapshot.empty) {
+            const list: Charger[] = [];
+            snapshot.forEach((doc) => {
+              const data = doc.data();
+              list.push({
+                id: doc.id,
+                name: data.name || 'Unnamed Station',
+                latitude: typeof data.latitude === 'number' ? data.latitude : userLat,
+                longitude: typeof data.longitude === 'number' ? data.longitude : userLng,
+                status: data.status === 'compromised' ? 'compromised' : 'secure',
+                riskLevel: data.riskLevel || 'none',
+                power: data.power || '150 kW DC Fast',
+                plugs: Array.isArray(data.plugs) ? data.plugs : ['CCS2', 'NACS'],
+                price: data.price || '$0.30/kWh',
+                address: data.address || 'Santa Monica, CA',
+                securityAlert: data.securityAlert ? {
+                  cve: data.securityAlert.cve || 'N/A',
+                  score: typeof data.securityAlert.score === 'number' ? data.securityAlert.score : 0,
+                  title: data.securityAlert.title || 'Protected Firmware',
+                  details: data.securityAlert.details || 'No security alerts.',
+                  recommendation: data.securityAlert.recommendation || 'Perfect security compliance.'
+                } : undefined
+              });
             });
+
+            setChargers(list);
+            setGpsStatus('FIRESTORE DATA STREAM ACTIVE');
+          } else {
+            console.warn("Firestore collection 'chargers' is empty. Falling back to local simulated dataset.");
+            setGpsStatus('FIRESTORE EMPTY - FALLBACK ACTIVE');
+            loadLocalFallback(userLat, userLng);
           }
-        } else {
-          throw new Error("API responded with error code");
-        }
+        }, (error) => {
+          console.error("Firestore subscription error, falling back:", error);
+          setGpsStatus('FIRESTORE ERROR - FALLBACK ACTIVE');
+          loadLocalFallback(userLat, userLng);
+        });
+
+        unsubscribeFirestore = unsubscribe;
       } catch (err) {
-        console.warn("Could not load from backend. Falling back to local live simulated coordinates.", err);
-        setGpsStatus('API OFFLINE - FALLBACK ACTIVE');
+        console.error("Failed to set up Firestore snapshot listener:", err);
+        setGpsStatus('FIRESTORE OFFLINE - FALLBACK ACTIVE');
         loadLocalFallback(userLat, userLng);
       }
     };
@@ -242,19 +228,25 @@ export default function SecurityDashboardScreen() {
           const lng = position.coords.longitude;
           setUserLocation({ latitude: lat, longitude: lng });
           
-          // Attempt to load from FastAPI backend. If it fails, falls back to local chargers centered around lat/lng
-          loadFromBackend(lat, lng);
+          // Start the live Firestore listener
+          loadFromFirestore(lat, lng);
         },
         (error) => {
           console.warn("Geolocation access denied or failed. Fallback to default center.", error);
           setUserLocation(DEFAULT_COORDS);
-          loadFromBackend(DEFAULT_COORDS.latitude, DEFAULT_COORDS.longitude);
+          loadFromFirestore(DEFAULT_COORDS.latitude, DEFAULT_COORDS.longitude);
         },
         { enableHighAccuracy: true, timeout: 8000 }
       );
     } else {
-      loadFromBackend(DEFAULT_COORDS.latitude, DEFAULT_COORDS.longitude);
+      loadFromFirestore(DEFAULT_COORDS.latitude, DEFAULT_COORDS.longitude);
     }
+
+    return () => {
+      if (unsubscribeFirestore) {
+        unsubscribeFirestore();
+      }
+    };
   }, []);
 
   const currentBase = userLocation || DEFAULT_COORDS;
