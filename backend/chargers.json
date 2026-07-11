@@ -1,0 +1,2207 @@
+[
+  {
+    "id": 46601,
+    "name": "Reed Motors",
+    "location": {
+      "lat": 28.551681,
+      "lng": -81.424557
+    },
+    "firmware": "unknown",
+    "log_file": "BMW_i4_2023-04-03T10:34:39.369Z-BMW-i4-din-spec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 5,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [
+      {
+        "code": "CURRENT_DEMAND_MINOR_GAP",
+        "title": "The final current-demand request may be incomplete",
+        "severity": "LOW",
+        "risk_points": 5,
+        "evidence": "44249 requests and 44245 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 124772,
+      "duration_seconds": 20398.471,
+      "current_demand_requests": 44249,
+      "current_demand_responses": 44245,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 52105,
+    "name": "Florida Mall Hotel",
+    "location": {
+      "lat": 28.450306,
+      "lng": -81.398009
+    },
+    "firmware": "unknown",
+    "log_file": "BMW_iX_2024-02-27_2024-02-27T13:26:06.131Z-1_din_spec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 393,
+      "duration_seconds": 60.227,
+      "current_demand_requests": 85,
+      "current_demand_responses": 85,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 88157,
+    "name": "OS MANAGED WP CITY HALL",
+    "location": {
+      "lat": 28.594705,
+      "lng": -81.351156
+    },
+    "firmware": "unknown",
+    "log_file": "BMW_iX_fw_11_2022.64_2023-03-30T06:36:03.571Z_car_stops_soc_too_close_to_target_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 15,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [
+      {
+        "code": "POWERDELIVERYREQ_PAIR_MISSING",
+        "title": "Incomplete power delivery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 58,
+      "duration_seconds": 55.827,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 92377,
+    "name": "CHARGE WP WP GLASS KNIFE",
+    "location": {
+      "lat": 28.595905,
+      "lng": -81.364487
+    },
+    "firmware": "unknown",
+    "log_file": "BMW_iX_fw_11_2022.64_din_spec_70121_2023-03-30T06:24:26.582Z_din_spec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 1539,
+      "duration_seconds": 184.051,
+      "current_demand_requests": 529,
+      "current_demand_responses": 529,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 104787,
+    "name": "SEACOAST BANK WINTER PARK",
+    "location": {
+      "lat": 28.597939,
+      "lng": -81.362877
+    },
+    "firmware": "unknown",
+    "log_file": "BMW_iX_fw_11_2022.64_iso_15118-2_2023-03-30T06:29:19.281Z_iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 1361,
+      "duration_seconds": 157.462,
+      "current_demand_requests": 465,
+      "current_demand_responses": 465,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113804,
+    "name": "Sheraton Orlando North - Tesla Destination",
+    "location": {
+      "lat": 28.632069,
+      "lng": -81.39111
+    },
+    "firmware": "unknown",
+    "log_file": "BYD_Atto3_2023-04-18T15:30:40.007Z-1_config-dc-dinspec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 35,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      },
+      {
+        "code": "CURRENT_DEMAND_MINOR_GAP",
+        "title": "The final current-demand request may be incomplete",
+        "severity": "LOW",
+        "risk_points": 5,
+        "evidence": "76 requests and 75 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 259,
+      "duration_seconds": 44.014,
+      "current_demand_requests": 76,
+      "current_demand_responses": 75,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113805,
+    "name": "Thurston House - Tesla Destination",
+    "location": {
+      "lat": 28.618807,
+      "lng": -81.37366
+    },
+    "firmware": "unknown",
+    "log_file": "BYD_Atto3_2023-04-18T15:31:50.525Z-2_config-dc-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 337,
+      "duration_seconds": 61.841,
+      "current_demand_requests": 108,
+      "current_demand_responses": 108,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113867,
+    "name": "Grand Bohemian Hotel Orlando - Tesla Destination",
+    "location": {
+      "lat": 28.538762,
+      "lng": -81.378713
+    },
+    "firmware": "unknown",
+    "log_file": "BYD_Atto3_2023-04-18T15:33:10.987Z-3_config-ac-iso2_not_supported_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "COMPROMISED",
+    "risk": 60,
+    "recommendation": "Avoid this charger until it is inspected or updated.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      },
+      {
+        "code": "CHARGEPARAMETERDISCOVERYREQ_PAIR_MISSING",
+        "title": "Incomplete charge-parameter discovery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "POWERDELIVERYREQ_PAIR_MISSING",
+        "title": "Incomplete power delivery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 23,
+      "duration_seconds": 37.555,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113868,
+    "name": "The Mall at Millenia - Tesla Destination",
+    "location": {
+      "lat": 28.484944,
+      "lng": -81.432871
+    },
+    "firmware": "unknown",
+    "log_file": "Citroen_eC4_2024-02-29T12:38:14.680Z-citroen-ec4-1_din_spec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 252,
+      "duration_seconds": 32.964,
+      "current_demand_requests": 62,
+      "current_demand_responses": 62,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113869,
+    "name": "Loews Portofino Bay Hotel at Universal Orlando - Tesla Destination",
+    "location": {
+      "lat": 28.480068,
+      "lng": -81.459402
+    },
+    "firmware": "unknown",
+    "log_file": "Citroen_eC4_2024-02-29T12:39:13.614Z-2_iso2_dc_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 231,
+      "duration_seconds": 38.0,
+      "current_demand_requests": 55,
+      "current_demand_responses": 55,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113870,
+    "name": "DoubleTree by Hilton Hotel at the Entrance to Universal Orlando - Tesla Destination",
+    "location": {
+      "lat": 28.478965,
+      "lng": -81.45696
+    },
+    "firmware": "unknown",
+    "log_file": "Citroen_eC4_2024-02-29T12:40:16.003Z-2_iso2_ac_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "CHARGEPARAMETERDISCOVERYREQ_PAIR_MISSING",
+        "title": "Incomplete charge-parameter discovery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "POWERDELIVERYREQ_PAIR_MISSING",
+        "title": "Incomplete power delivery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 29,
+      "duration_seconds": 30.554,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113871,
+    "name": "Hard Rock Hotel at Universal Orlando - Tesla Destination",
+    "location": {
+      "lat": 28.47847,
+      "lng": -81.464687
+    },
+    "firmware": "unknown",
+    "log_file": "Fiat_Scudo_2024-02-20T09:29:24.291Z-1_din_spec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 5031,
+      "duration_seconds": 432.804,
+      "current_demand_requests": 1900,
+      "current_demand_responses": 1902,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113873,
+    "name": "CityWalk at Universal Orlando Resort - Tesla Destination",
+    "location": {
+      "lat": 28.474705,
+      "lng": -81.464334
+    },
+    "firmware": "unknown",
+    "log_file": "Fiat_Scudo_2024-02-20T09:37:13.153Z-2_iso2_dc_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "COMPROMISED",
+    "risk": 60,
+    "recommendation": "Avoid this charger until it is inspected or updated.",
+    "findings": [
+      {
+        "code": "SESSIONSETUPREQ_PAIR_MISSING",
+        "title": "Incomplete ISO 15118 session setup exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "SERVICEDISCOVERYREQ_PAIR_MISSING",
+        "title": "Incomplete service discovery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "CHARGEPARAMETERDISCOVERYREQ_PAIR_MISSING",
+        "title": "Incomplete charge-parameter discovery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "POWERDELIVERYREQ_PAIR_MISSING",
+        "title": "Incomplete power delivery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 31,
+      "duration_seconds": 77.919,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113878,
+    "name": "Courtyard Orlando Downtown - Tesla Destination",
+    "location": {
+      "lat": 28.554271,
+      "lng": -81.377852
+    },
+    "firmware": "unknown",
+    "log_file": "Hyundai_Ioniq5_din_spec_70121_2023-04-07T10:26:30.299Z-ioniq5_dinspec_discharge_incomplete-eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 35,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "INCOMPLETE_SESSION_LOG",
+        "title": "The log ends without a complete session shutdown",
+        "severity": "MEDIUM",
+        "risk_points": 20,
+        "evidence": "Session Finished=False; Session logging stopped=False."
+      },
+      {
+        "code": "TRANSACTION_END_MISSING",
+        "title": "The transaction has no recorded completion event",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Transaction Started exists, but Transaction Finished does not."
+      }
+    ],
+    "telemetry": {
+      "event_count": 108742,
+      "duration_seconds": 8990.072,
+      "current_demand_requests": 49729,
+      "current_demand_responses": 49738,
+      "session_finished": false,
+      "transaction_finished": false
+    }
+  },
+  {
+    "id": 117559,
+    "name": "SIMON FLORIDA MALL",
+    "location": {
+      "lat": 28.447274,
+      "lng": -81.395839
+    },
+    "firmware": "unknown",
+    "log_file": "Hyundai_Ioniq5_din_spec_70121_2023-04-07T12:58:32.824Z-ioniq5_dinspec_charge_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 1215,
+      "duration_seconds": 118.256,
+      "current_demand_requests": 395,
+      "current_demand_responses": 395,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 118683,
+    "name": "OS MANAGED HOWELL BRANCH 1",
+    "location": {
+      "lat": 28.624707,
+      "lng": -81.339269
+    },
+    "firmware": "unknown",
+    "log_file": "Hyundai_Ioniq5_iso15118-2-AC_2023-04-07T13:07:20.067Z-ioniq5-iso15118-AC-not-supported_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "CHARGEPARAMETERDISCOVERYREQ_PAIR_MISSING",
+        "title": "Incomplete charge-parameter discovery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "POWERDELIVERYREQ_PAIR_MISSING",
+        "title": "Incomplete power delivery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 36,
+      "duration_seconds": 20.292,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 118684,
+    "name": "OS MANAGED WP LK BALDWIN01",
+    "location": {
+      "lat": 28.576276,
+      "lng": -81.326806
+    },
+    "firmware": "unknown",
+    "log_file": "Hyundai_Ioniq5_iso15118-2-DC_2023-04-07T13:01:58.695Z-iso15118-charge_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 1139,
+      "duration_seconds": 122.484,
+      "current_demand_requests": 440,
+      "current_demand_responses": 440,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 145516,
+    "name": "OS MANAGED WP WARD PARK 01",
+    "location": {
+      "lat": 28.593453,
+      "lng": -81.322809
+    },
+    "firmware": "unknown",
+    "log_file": "Kia_EV6_2023-04-25T07:25:45.287Z-kia-ev6-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 3368,
+      "duration_seconds": 297.36,
+      "current_demand_requests": 1400,
+      "current_demand_responses": 1400,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 148923,
+    "name": "Camden Thornton Park",
+    "location": {
+      "lat": 28.5401691,
+      "lng": -81.3720781
+    },
+    "firmware": "unknown",
+    "log_file": "Kia_EV6_2023-04-25T07:33:01.338Z-kia-ev6-dinspec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 1270,
+      "duration_seconds": 123.954,
+      "current_demand_requests": 435,
+      "current_demand_responses": 435,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 149142,
+    "name": "OS MANAGED WP TENNIS CTR01",
+    "location": {
+      "lat": 28.588838,
+      "lng": -81.358935
+    },
+    "firmware": "unknown",
+    "log_file": "Mercedes-Benz_EQC_din_spec_70121_2023-04-12T08:52:22.344Z-eqc-din-spec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 1184,
+      "duration_seconds": 186.269,
+      "current_demand_requests": 459,
+      "current_demand_responses": 459,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 151964,
+    "name": "OS MANAGED WP CADY WAY PK",
+    "location": {
+      "lat": 28.593827,
+      "lng": -81.317313
+    },
+    "firmware": "unknown",
+    "log_file": "Mercedes-Benz_EQC_iso-15118-2-DC_2023-04-12T09:01:48.230Z-eqc-iso15118-2-DC_not_supported_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "COMPROMISED",
+    "risk": 60,
+    "recommendation": "Avoid this charger until it is inspected or updated.",
+    "findings": [
+      {
+        "code": "SESSIONSETUPREQ_PAIR_MISSING",
+        "title": "Incomplete ISO 15118 session setup exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "SERVICEDISCOVERYREQ_PAIR_MISSING",
+        "title": "Incomplete service discovery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "CHARGEPARAMETERDISCOVERYREQ_PAIR_MISSING",
+        "title": "Incomplete charge-parameter discovery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "POWERDELIVERYREQ_PAIR_MISSING",
+        "title": "Incomplete power delivery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 27,
+      "duration_seconds": 29.563,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 153042,
+    "name": "Bainbridge Winter Park location",
+    "location": {
+      "lat": 28.607677,
+      "lng": -81.3673109
+    },
+    "firmware": "unknown",
+    "log_file": "Mercedes-Benz_EQE_2023-04-18T15:18:18.778Z-1_config-dc-dinspec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 153,
+      "duration_seconds": 32.262,
+      "current_demand_requests": 31,
+      "current_demand_responses": 31,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 161521,
+    "name": "HIGHWOODS ORL CAPITAL EV2",
+    "location": {
+      "lat": 28.541191,
+      "lng": -81.374065
+    },
+    "firmware": "unknown",
+    "log_file": "Mercedes-Benz_EQE_2023-04-18T15:19:14.023Z-2_config-dc-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 360,
+      "duration_seconds": 57.201,
+      "current_demand_requests": 119,
+      "current_demand_responses": 119,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 161527,
+    "name": "HIGHWOODS ORL SEASIDE EV",
+    "location": {
+      "lat": 28.540114,
+      "lng": -81.37769
+    },
+    "firmware": "unknown",
+    "log_file": "Mercedes-Benz_EQE_2023-04-18T15:20:45.345Z-3_config-ac-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 61,
+      "duration_seconds": 38.401,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 161528,
+    "name": "HIGHWOODS ORL LANDMARK1 EV1",
+    "location": {
+      "lat": 28.547058,
+      "lng": -81.374132
+    },
+    "firmware": "unknown",
+    "log_file": "Opel_Mokka-E_din_spec_70121_2023-04-14T14:18:09.853Z-1_config-dc-dinspec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 480,
+      "duration_seconds": 60.695,
+      "current_demand_requests": 179,
+      "current_demand_responses": 179,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 161677,
+    "name": "PALMER-ELECTRIC PALMER HQ 01",
+    "location": {
+      "lat": 28.590525,
+      "lng": -81.370895
+    },
+    "firmware": "unknown",
+    "log_file": "Opel_Mokka-E_din_spec_70121_2023-04-14T14:24:51.377Z-8_config-josev-dc-dinspec_failure_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 70,
+      "duration_seconds": 27.0,
+      "current_demand_requests": 2,
+      "current_demand_responses": 2,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 166916,
+    "name": "ROLLINS COLLEGE WELLNESS CENTER",
+    "location": {
+      "lat": 28.592798,
+      "lng": -81.35131
+    },
+    "firmware": "unknown",
+    "log_file": "Opel_Mokka-E_din_spec_70121_2023-04-14T14:33:09.944Z-1_config-dc-dinspec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 242,
+      "duration_seconds": 38.969,
+      "current_demand_requests": 72,
+      "current_demand_responses": 72,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 167164,
+    "name": "The Florida Mall (Orlando, FL)",
+    "location": {
+      "lat": 28.44832,
+      "lng": -81.39505
+    },
+    "firmware": "unknown",
+    "log_file": "Opel_Mokka-E_iso_15118-2_AC_not_supported_2023-04-14T14:21:01.727Z-3_config-ac-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "COMPROMISED",
+    "risk": 60,
+    "recommendation": "Avoid this charger until it is inspected or updated.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      },
+      {
+        "code": "CHARGEPARAMETERDISCOVERYREQ_PAIR_MISSING",
+        "title": "Incomplete charge-parameter discovery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "POWERDELIVERYREQ_PAIR_MISSING",
+        "title": "Incomplete power delivery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 25,
+      "duration_seconds": 23.425,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 167206,
+    "name": "CORPORATE SMALL PARK LOT",
+    "location": {
+      "lat": 28.549522,
+      "lng": -81.37623
+    },
+    "firmware": "unknown",
+    "log_file": "Opel_Mokka-E_iso_15118-2_DC_2023-04-14T14:19:47.742Z-2_config-dc-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 163,
+      "duration_seconds": 47.805,
+      "current_demand_requests": 36,
+      "current_demand_responses": 36,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 169173,
+    "name": "The Delaney Hotel - Tesla Destination",
+    "location": {
+      "lat": 28.526026,
+      "lng": -81.376066
+    },
+    "firmware": "unknown",
+    "log_file": "Opel_Mokka-E_iso_15118-2_DC_2023-04-14T14:26:45.452Z-9_config-josev-dc-iso2_failure_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 66,
+      "duration_seconds": 39.042,
+      "current_demand_requests": 1,
+      "current_demand_responses": 1,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 169963,
+    "name": "Hannibal Square",
+    "location": {
+      "lat": 28.595779,
+      "lng": -81.35737
+    },
+    "firmware": "unknown",
+    "log_file": "Polestar_Polestar2_din_spec_70121_2023-04-04T11:30:54.757Z-polestar2_din_spec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 18066,
+      "duration_seconds": 1805.217,
+      "current_demand_requests": 7990,
+      "current_demand_responses": 7990,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 179819,
+    "name": "HIGHWOODS ORL CAPITAL EV1",
+    "location": {
+      "lat": 28.541163,
+      "lng": -81.374065
+    },
+    "firmware": "unknown",
+    "log_file": "Polestar_Polestar2_iso15118-2_AC_2023-04-05T15:56:33.351Z-polestar2-iso15118-2-AC_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 15,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [
+      {
+        "code": "POWERDELIVERYREQ_PAIR_MISSING",
+        "title": "Incomplete power delivery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 36,
+      "duration_seconds": 19.415,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 185117,
+    "name": "THORNTON PARK EV STATION 1",
+    "location": {
+      "lat": 28.543107,
+      "lng": -81.369078
+    },
+    "firmware": "unknown",
+    "log_file": "Polestar_Polestar2_iso15118-2_DC_2023-04-04T12:37:00.049Z-polestar2_iso15118-2_dc_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 1822,
+      "duration_seconds": 199.98,
+      "current_demand_requests": 719,
+      "current_demand_responses": 719,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 185219,
+    "name": "305 Palmetto Ave Parking",
+    "location": {
+      "lat": 28.54596835074688,
+      "lng": -81.37659345565032
+    },
+    "firmware": "unknown",
+    "log_file": "Polestar_Polestar2_iso15118-2_DC_2023-04-06T06:38:18.654Z-polestar2-Josev-iso-2-DC_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 704,
+      "duration_seconds": 147.134,
+      "current_demand_requests": 218,
+      "current_demand_responses": 218,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 185253,
+    "name": "THORNTON PARK EV STATION 2",
+    "location": {
+      "lat": 28.54307,
+      "lng": -81.369199
+    },
+    "firmware": "unknown",
+    "log_file": "Porsche_Taycan_4S_din-spec-70121_2023-04-11T09:36:33.255Z-taycan-din-spec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 561,
+      "duration_seconds": 121.096,
+      "current_demand_requests": 141,
+      "current_demand_responses": 141,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 186332,
+    "name": "Winter Park, FL - Tesla Supercharger",
+    "location": {
+      "lat": 28.604986,
+      "lng": -81.366308
+    },
+    "firmware": "unknown",
+    "log_file": "Porsche_Taycan_4S_din-spec-70121_2023-04-11T13:06:54.809Z-taycan-discharge-test_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 4802,
+      "duration_seconds": 507.382,
+      "current_demand_requests": 2047,
+      "current_demand_responses": 2047,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 193597,
+    "name": "SEACOAST BANK 250 ORANGE AVE",
+    "location": {
+      "lat": 28.544973,
+      "lng": -81.379263
+    },
+    "firmware": "unknown",
+    "log_file": "Porsche_Taycan_4S_iso-15118-2-AC_2023-04-11T09:44:27.990Z-taycan-iso-ac-driverside_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 544,
+      "duration_seconds": 75.867,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 193772,
+    "name": "CFX EV CHARGE ORL TOWER 4010",
+    "location": {
+      "lat": 28.540456,
+      "lng": -81.322651
+    },
+    "firmware": "unknown",
+    "log_file": "Porsche_Taycan_4S_iso-15118-2-AC_2023-04-11T09:46:34.483Z-taycan-iso-otherside_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 113.288,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 193773,
+    "name": "CFX EV CHARGE ORL TOWER 4025",
+    "location": {
+      "lat": 28.540563,
+      "lng": -81.322658
+    },
+    "firmware": "unknown",
+    "log_file": "Porsche_Taycan_4S_iso-15118-2-DC_2023-04-11T09:29:27.010Z-taycan-iso-2-DC_incomplete-eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 558,
+      "duration_seconds": 224.416,
+      "current_demand_requests": 141,
+      "current_demand_responses": 141,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 193774,
+    "name": "CFX EV CHARGE ORL TOWER 4020",
+    "location": {
+      "lat": 28.540521,
+      "lng": -81.322651
+    },
+    "firmware": "unknown",
+    "log_file": "Seres_2024-01-10T13:18:27.364Z-1_din_spec_incomplete-eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 35,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "INCOMPLETE_SESSION_LOG",
+        "title": "The log ends without a complete session shutdown",
+        "severity": "MEDIUM",
+        "risk_points": 20,
+        "evidence": "Session Finished=False; Session logging stopped=False."
+      },
+      {
+        "code": "TRANSACTION_END_MISSING",
+        "title": "The transaction has no recorded completion event",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Transaction Started exists, but Transaction Finished does not."
+      }
+    ],
+    "telemetry": {
+      "event_count": 2560,
+      "duration_seconds": 363.615,
+      "current_demand_requests": 890,
+      "current_demand_responses": 890,
+      "session_finished": false,
+      "transaction_finished": false
+    }
+  },
+  {
+    "id": 202677,
+    "name": "OS MANAGED WP LIBRARY",
+    "location": {
+      "lat": 28.597143,
+      "lng": -81.36327
+    },
+    "firmware": "unknown",
+    "log_file": "Seres_2024-01-10T13:30:14.882Z-2_iso2_dc_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 762,
+      "duration_seconds": 130.96,
+      "current_demand_requests": 237,
+      "current_demand_responses": 237,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 211726,
+    "name": "MILLENIA STATION 2",
+    "location": {
+      "lat": 28.484886,
+      "lng": -81.432832
+    },
+    "firmware": "unknown",
+    "log_file": "Seres_2024-01-10T13:40:14.939Z-2_iso2_ac_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 15,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [
+      {
+        "code": "POWERDELIVERYREQ_PAIR_MISSING",
+        "title": "Incomplete power delivery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 356,
+      "duration_seconds": 80.039,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 216515,
+    "name": "Modera Creative Village",
+    "location": {
+      "lat": 28.5496221,
+      "lng": -81.3861388
+    },
+    "firmware": "unknown",
+    "log_file": "Skoda_Enyaq_v3.0_din_spec_70121_2023-04-04T06:39:32.092Z-skoda_enyaq_din_spec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 5,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [
+      {
+        "code": "CURRENT_DEMAND_MINOR_GAP",
+        "title": "The final current-demand request may be incomplete",
+        "severity": "LOW",
+        "risk_points": 5,
+        "evidence": "62685 requests and 62684 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 139628,
+      "duration_seconds": 13849.213,
+      "current_demand_requests": 62685,
+      "current_demand_responses": 62684,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 219850,
+    "name": "Lofts at Sodo Apartments",
+    "location": {
+      "lat": 28.5163334,
+      "lng": -81.3777709
+    },
+    "firmware": "unknown",
+    "log_file": "Subaru_Solterra_2023-04-18T15:21:42.626Z-1_config-dc-dinspec_incomplete-eventlog.csv",
+    "metadata_source": "generated",
+    "status": "COMPROMISED",
+    "risk": 55,
+    "recommendation": "Avoid this charger until it is inspected or updated.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      },
+      {
+        "code": "CURRENT_DEMAND_MINOR_GAP",
+        "title": "The final current-demand request may be incomplete",
+        "severity": "LOW",
+        "risk_points": 5,
+        "evidence": "113 requests and 112 responses."
+      },
+      {
+        "code": "INCOMPLETE_SESSION_LOG",
+        "title": "The log ends without a complete session shutdown",
+        "severity": "MEDIUM",
+        "risk_points": 20,
+        "evidence": "Session Finished=False; Session logging stopped=False."
+      }
+    ],
+    "telemetry": {
+      "event_count": 365,
+      "duration_seconds": 38.104,
+      "current_demand_requests": 113,
+      "current_demand_responses": 112,
+      "session_finished": false,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 220240,
+    "name": "THE FRED SAWGRASS",
+    "location": {
+      "lat": 28.511183,
+      "lng": -81.329675
+    },
+    "firmware": "unknown",
+    "log_file": "Subaru_Solterra_2023-04-18T15:23:50.843Z-2_config-dc-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 668,
+      "duration_seconds": 77.915,
+      "current_demand_requests": 241,
+      "current_demand_responses": 241,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 221285,
+    "name": "HIGHWOODS ORL EOLA CENTER S1",
+    "location": {
+      "lat": 28.545901,
+      "lng": -81.374985
+    },
+    "firmware": "unknown",
+    "log_file": "Tesla_Model_3_2023-04-06T11:52:31.423Z-tesla_model_3_dinspec_DC_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 4674,
+      "duration_seconds": 267.55,
+      "current_demand_requests": 1816,
+      "current_demand_responses": 1817,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 221430,
+    "name": "ROLLINS COLLEGE TRUIST GARAGE",
+    "location": {
+      "lat": 28.594432,
+      "lng": -81.349714
+    },
+    "firmware": "unknown",
+    "log_file": "Tesla_Model_Y_11.1_din_spec_70121_2023-03-30T11:00:22.659Z-tesla_y-dinspec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 2064,
+      "duration_seconds": 127.215,
+      "current_demand_requests": 774,
+      "current_demand_responses": 774,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 221782,
+    "name": "Orlando, FL - Millenia Plaza Way - Tesla Supercharger",
+    "location": {
+      "lat": 28.492358,
+      "lng": -81.429361
+    },
+    "firmware": "unknown",
+    "log_file": "Tesla_Model_Y_11.1_iso15118-2_2023-03-30T11:11:20.331Z-tesla_y-iso-not-supported_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "COMPROMISED",
+    "risk": 60,
+    "recommendation": "Avoid this charger until it is inspected or updated.",
+    "findings": [
+      {
+        "code": "SESSIONSETUPREQ_PAIR_MISSING",
+        "title": "Incomplete ISO 15118 session setup exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "SERVICEDISCOVERYREQ_PAIR_MISSING",
+        "title": "Incomplete service discovery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "CHARGEPARAMETERDISCOVERYREQ_PAIR_MISSING",
+        "title": "Incomplete charge-parameter discovery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "POWERDELIVERYREQ_PAIR_MISSING",
+        "title": "Incomplete power delivery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 25,
+      "duration_seconds": 17.061,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 224613,
+    "name": "CFX EV CHARGE MAGNOLIA 4020",
+    "location": {
+      "lat": 28.536374,
+      "lng": -81.377185
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.3_din_spec_70121_2023-04-14T12:43:41.612Z-1_config-dc-dinspec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 308,
+      "duration_seconds": 39.691,
+      "current_demand_requests": 96,
+      "current_demand_responses": 96,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 224614,
+    "name": "CFX EV CHARGE MAGNOLIA 4025",
+    "location": {
+      "lat": 28.536408,
+      "lng": -81.377197
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.3_din_spec_70121_2023-04-14T12:46:53.182Z-8_config-josev-dc-dinspec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 138,
+      "duration_seconds": 49.153,
+      "current_demand_requests": 23,
+      "current_demand_responses": 23,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 237621,
+    "name": "Orlando, FL - South Orange Blossom Trail - Tesla Supercharger",
+    "location": {
+      "lat": 28.448482,
+      "lng": -81.394596
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.3_din_spec_70121_2023-04-14T12:53:04.615Z-id3pure-dinspec-discharge_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 4052,
+      "duration_seconds": 429.112,
+      "current_demand_requests": 1629,
+      "current_demand_responses": 1629,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 251903,
+    "name": "MAITLAND INDEPENDENCE SQ",
+    "location": {
+      "lat": 28.627412,
+      "lng": -81.36504
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.3_iso_15118-2_AC_2023-04-14T12:45:39.624Z-3_config-ac-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 76,
+      "duration_seconds": 34.662,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 252810,
+    "name": "IKEA USA ORLANDO 1",
+    "location": {
+      "lat": 28.482998,
+      "lng": -81.428026
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.3_iso_15118-2_DC_2023-04-14T12:44:52.283Z-2_config-dc-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 171,
+      "duration_seconds": 25.827,
+      "current_demand_requests": 34,
+      "current_demand_responses": 34,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 252940,
+    "name": "CLIMATE FIRST STATION RIGHT",
+    "location": {
+      "lat": 28.587206,
+      "lng": -81.36478
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.3_iso_15118-2_DC_2023-04-14T12:48:02.295Z-9_config-josev-dc-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 158,
+      "duration_seconds": 35.515,
+      "current_demand_requests": 31,
+      "current_demand_responses": 31,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 252941,
+    "name": "CLIMATE FIRST STATION 2300",
+    "location": {
+      "lat": 28.587126,
+      "lng": -81.364807
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.4_din_spec_70121_2023-04-14T09:50:13.841Z-1_config-dc-dinspec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 192,
+      "duration_seconds": 31.597,
+      "current_demand_requests": 42,
+      "current_demand_responses": 42,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 253851,
+    "name": "MAITLAND LAKE LILY",
+    "location": {
+      "lat": 28.622744,
+      "lng": -81.365588
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.4_din_spec_70121_2023-04-14T09:54:43.610Z-8_config-josev-dc-dinspec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 131,
+      "duration_seconds": 34.631,
+      "current_demand_requests": 19,
+      "current_demand_responses": 19,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 256581,
+    "name": "Hyatt House Across From Universal Orlando Resort - Tesla Destination",
+    "location": {
+      "lat": 28.475324,
+      "lng": -81.457444
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.4_din_spec_70121_2023-04-14T09:57:59.260Z-id4pro-din-spec-with-discharge_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 2062,
+      "duration_seconds": 348.505,
+      "current_demand_requests": 811,
+      "current_demand_responses": 811,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 259757,
+    "name": "MAITLAND FT. MAITLAND",
+    "location": {
+      "lat": 28.620155,
+      "lng": -81.364197
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.4_fw_3.5_2023-04-18T15:40:33.744Z-1_config-dc-dinspec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 179,
+      "duration_seconds": 37.384,
+      "current_demand_requests": 37,
+      "current_demand_responses": 37,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 260496,
+    "name": "OS MANAGED HANNIBAL SQUARE",
+    "location": {
+      "lat": 28.599758,
+      "lng": -81.351657
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.4_fw_3.5_2023-04-18T15:41:38.541Z-2_config-dc-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 329,
+      "duration_seconds": 45.232,
+      "current_demand_requests": 105,
+      "current_demand_responses": 105,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 260828,
+    "name": "OS MANAGED WP GARFIELD AVE",
+    "location": {
+      "lat": 28.599715,
+      "lng": -81.351653
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.4_fw_3.5_2023-04-18T15:42:52.604Z-3_config-ac-iso2_incomplete-eventlog.csv",
+    "metadata_source": "generated",
+    "status": "COMPROMISED",
+    "risk": 65,
+    "recommendation": "Avoid this charger until it is inspected or updated.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      },
+      {
+        "code": "INCOMPLETE_SESSION_LOG",
+        "title": "The log ends without a complete session shutdown",
+        "severity": "MEDIUM",
+        "risk_points": 20,
+        "evidence": "Session Finished=False; Session logging stopped=False."
+      },
+      {
+        "code": "TRANSACTION_END_MISSING",
+        "title": "The transaction has no recorded completion event",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Transaction Started exists, but Transaction Finished does not."
+      }
+    ],
+    "telemetry": {
+      "event_count": 48,
+      "duration_seconds": 25.438,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": false,
+      "transaction_finished": false
+    }
+  },
+  {
+    "id": 260947,
+    "name": "Millenia Park One - EV Parking Garage",
+    "location": {
+      "lat": 28.4875738,
+      "lng": -81.4403421
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.4_iso_15118-2_AC_2023-04-14T09:52:17.069Z-3_config-ac-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 43,
+      "duration_seconds": 43.448,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 261489,
+    "name": "Sun Plaza",
+    "location": {
+      "lat": 28.552687,
+      "lng": -81.469495
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.4_iso_15118-2_DC_2023-04-14T09:51:11.107Z-2_config-dc-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 317,
+      "duration_seconds": 43.218,
+      "current_demand_requests": 98,
+      "current_demand_responses": 98,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 261827,
+    "name": "MILLENIA STATION 1",
+    "location": {
+      "lat": 28.484891,
+      "lng": -81.43287
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.4_iso_15118-2_DC_2023-04-14T09:53:34.808Z-4_config-dc-iso2-pnc_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "COMPROMISED",
+    "risk": 100,
+    "recommendation": "Avoid this charger until it is inspected or updated.",
+    "findings": [
+      {
+        "code": "AUTHORIZATION_MISSING",
+        "title": "External authorization was not confirmed",
+        "severity": "CRITICAL",
+        "risk_points": 40,
+        "evidence": "No 'EIM Authorization received' event was found."
+      },
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      },
+      {
+        "code": "CHARGEPARAMETERDISCOVERYREQ_PAIR_MISSING",
+        "title": "Incomplete charge-parameter discovery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      },
+      {
+        "code": "POWERDELIVERYREQ_PAIR_MISSING",
+        "title": "Incomplete power delivery exchange",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Found 0 requests and 0 responses."
+      }
+    ],
+    "telemetry": {
+      "event_count": 20,
+      "duration_seconds": 31.671,
+      "current_demand_requests": 0,
+      "current_demand_responses": 0,
+      "session_finished": true,
+      "transaction_finished": false
+    }
+  },
+  {
+    "id": 303622,
+    "name": "Robinson Hub",
+    "location": {
+      "lat": 28.54616,
+      "lng": -81.381482
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.4_iso_15118-2_DC_2023-04-14T09:56:00.969Z-9_config-josev-dc-iso2_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 143,
+      "duration_seconds": 35.795,
+      "current_demand_requests": 24,
+      "current_demand_responses": 24,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 309258,
+    "name": "G-Deck",
+    "location": {
+      "lat": 28.525352,
+      "lng": -81.3772888
+    },
+    "firmware": "unknown",
+    "log_file": "VW_id.buzz_fw_3.2_din_spec_70121_bidirectional_2023-03-30T09:25:58.879Z_id_buzz_discharge_din_spec_eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 10790,
+      "duration_seconds": 1088.888,
+      "current_demand_requests": 4735,
+      "current_demand_responses": 4735,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 309259,
+    "name": "Orlando Health TM Center Garage",
+    "location": {
+      "lat": 28.5316308,
+      "lng": -81.3786928
+    },
+    "firmware": "unknown",
+    "log_file": "eventlog.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 252,
+      "duration_seconds": 32.964,
+      "current_demand_requests": 62,
+      "current_demand_responses": 62,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 310348,
+    "name": "Casa Verde Apartments",
+    "location": {
+      "lat": 28.52204579038155,
+      "lng": -81.28663236302205
+    },
+    "firmware": "unknown",
+    "log_file": "eventlog_1.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 762,
+      "duration_seconds": 130.96,
+      "current_demand_requests": 237,
+      "current_demand_responses": 237,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 310466,
+    "name": "IWORKSPACES IWORKSPACES",
+    "location": {
+      "lat": 28.555502,
+      "lng": -81.376557
+    },
+    "firmware": "unknown",
+    "log_file": "eventlog_2.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 4674,
+      "duration_seconds": 267.55,
+      "current_demand_requests": 1816,
+      "current_demand_responses": 1817,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 310523,
+    "name": "Parker at Maitland Station",
+    "location": {
+      "lat": 28.63553,
+      "lng": -81.361669
+    },
+    "firmware": "unknown",
+    "log_file": "eventlog_3.csv",
+    "metadata_source": "generated",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 231,
+      "duration_seconds": 38.0,
+      "current_demand_requests": 55,
+      "current_demand_responses": 55,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313819,
+    "name": "EPRI",
+    "location": {
+      "lat": 28.501052,
+      "lng": -81.429917
+    },
+    "firmware": "unknown",
+    "log_file": "eventlog_4.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 35,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "INCOMPLETE_SESSION_LOG",
+        "title": "The log ends without a complete session shutdown",
+        "severity": "MEDIUM",
+        "risk_points": 20,
+        "evidence": "Session Finished=False; Session logging stopped=False."
+      },
+      {
+        "code": "TRANSACTION_END_MISSING",
+        "title": "The transaction has no recorded completion event",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Transaction Started exists, but Transaction Finished does not."
+      }
+    ],
+    "telemetry": {
+      "event_count": 2560,
+      "duration_seconds": 363.615,
+      "current_demand_requests": 890,
+      "current_demand_responses": 890,
+      "session_finished": false,
+      "transaction_finished": false
+    }
+  },
+  {
+    "id": 313824,
+    "name": "Gardenia",
+    "location": {
+      "lat": 28.503061,
+      "lng": -81.423434
+    },
+    "firmware": "unknown",
+    "log_file": "eventlog_5.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 30,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "SLAC_MISSING",
+        "title": "PLC pairing was not established",
+        "severity": "HIGH",
+        "risk_points": 30,
+        "evidence": "No 'SLAC MATCHED' event was found."
+      }
+    ],
+    "telemetry": {
+      "event_count": 337,
+      "duration_seconds": 61.841,
+      "current_demand_requests": 108,
+      "current_demand_responses": 108,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313826,
+    "name": "Water Treatment",
+    "location": {
+      "lat": 28.602152,
+      "lng": -81.354787
+    },
+    "firmware": "unknown",
+    "log_file": "incomplete-eventlog.csv",
+    "metadata_source": "generated",
+    "status": "WARNING",
+    "risk": 35,
+    "recommendation": "Review the findings before using this charger.",
+    "findings": [
+      {
+        "code": "INCOMPLETE_SESSION_LOG",
+        "title": "The log ends without a complete session shutdown",
+        "severity": "MEDIUM",
+        "risk_points": 20,
+        "evidence": "Session Finished=False; Session logging stopped=False."
+      },
+      {
+        "code": "TRANSACTION_END_MISSING",
+        "title": "The transaction has no recorded completion event",
+        "severity": "MEDIUM",
+        "risk_points": 15,
+        "evidence": "Transaction Started exists, but Transaction Finished does not."
+      }
+    ],
+    "telemetry": {
+      "event_count": 2560,
+      "duration_seconds": 363.615,
+      "current_demand_requests": 890,
+      "current_demand_responses": 890,
+      "session_finished": false,
+      "transaction_finished": false
+    }
+  }
+]
