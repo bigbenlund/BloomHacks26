@@ -31,6 +31,22 @@ def get_nlr_api_key() -> str:
         Falls back to nlr_api_key.txt if Secret Manager is unavailable.
         This file must never be committed.
     """
+    import os
+    try:
+        from dotenv import load_dotenv
+        # load from root .env if it exists
+        root_env = Path(__file__).resolve().parent.parent / ".env"
+        if root_env.exists():
+            load_dotenv(dotenv_path=root_env)
+        else:
+            load_dotenv()
+    except ImportError:
+        pass
+
+    env_key = os.environ.get("NREL_API_KEY") or os.environ.get("NLR_API_KEY")
+    if env_key:
+        return env_key.strip()
+
     cloud_error: Exception | None = None
 
     try:

@@ -147,6 +147,7 @@ export default function SecurityDashboardScreen() {
     }
     return null;
   });
+  const [chargers, setChargers] = useState<Charger[]>([]);
   const [selectedCharger, setSelectedCharger] = useState<Charger | null>(null);
   const [routeToCharger, setRouteToCharger] = useState<Charger | null>(null);
   const [gpsStatus, setGpsStatus] = useState<string>(() => {
@@ -156,29 +157,107 @@ export default function SecurityDashboardScreen() {
     return 'ACQUIRING POSITION...';
   });
 
-  // Request browser geolocation on mount
+  // Request browser geolocation on mount and fetch backend chargers
   useEffect(() => {
+    const loadLocalFallback = (lat: number, lng: number) => {
+      const mockList = createMockChargers(lat, lng);
+      setChargers(mockList);
+    };
+
+    const loadFromBackend = async (userLat: number, userLng: number) => {
+      try {
+        setGpsStatus('FETCHING GRID METADATA...');
+        const response = await fetch('http://localhost:8000/chargers');
+        if (response.ok) {
+          const data = await response.json();
+          const mapped = data.map((item: any) => {
+            const hasLocation = item.location && typeof item.location.lat === 'number' && typeof item.location.lng === 'number';
+            const lat = hasLocation ? item.location.lat : userLat;
+            const lng = hasLocation ? item.location.lng : userLng;
+            
+            // Map STATUS: SAFE -> secure, WARNING -> warning, COMPROMISED -> compromised
+            let status: 'secure' | 'compromised' = 'secure';
+            if (item.status === 'WARNING' || item.status === 'COMPROMISED') {
+              status = 'compromised';
+            }
+
+            let riskLevel: 'none' | 'high' | 'critical' = 'none';
+            if (item.status === 'WARNING') {
+              riskLevel = 'high';
+            } else if (item.status === 'COMPROMISED') {
+              riskLevel = 'critical';
+            }
+
+            // Combine all findings into a details string
+            let details = item.recommendation || 'No major findings.';
+            if (item.findings && item.findings.length > 0) {
+              details = item.findings.map((f: any) => `${f.title}\nSeverity: ${f.severity} | Risk: +${f.risk_points} pts\nEvidence: ${f.evidence}`).join('\n\n');
+            }
+
+            return {
+              id: String(item.id),
+              name: item.name,
+              latitude: lat,
+              longitude: lng,
+              status,
+              riskLevel,
+              power: item.telemetry && item.telemetry.event_count ? `Log Events: ${item.telemetry.event_count}` : '150 kW DC Fast',
+              plugs: ['CCS2', 'NACS'],
+              price: '$0.30/kWh',
+              address: item.name + ' - Orlando Grid Node',
+              securityAlert: {
+                cve: item.findings && item.findings.length > 0 ? item.findings[0].code : (item.status === 'SAFE' ? 'SECURE-NODE' : 'VULN-NODE'),
+                score: item.risk / 10,
+                title: item.findings && item.findings.length > 0 ? item.findings[0].title : (item.status === 'SAFE' ? 'Grid-Secure Firmware Verified' : 'Vulnerable Firmware Profile'),
+                details,
+                recommendation: item.recommendation
+              }
+            };
+          });
+
+          setChargers(mapped);
+          setGpsStatus('API GRID CONNECTION ACTIVE');
+          
+          // Let's set the user location to Orlando so that the map centers on the real backend chargers!
+          if (mapped.length > 0) {
+            setUserLocation({
+              latitude: 28.5383, // Orlando Latitude
+              longitude: -81.3792 // Orlando Longitude
+            });
+          }
+        } else {
+          throw new Error("API responded with error code");
+        }
+      } catch (err) {
+        console.warn("Could not load from backend. Falling back to local live simulated coordinates.", err);
+        setGpsStatus('API OFFLINE - FALLBACK ACTIVE');
+        loadLocalFallback(userLat, userLng);
+      }
+    };
+
     if (typeof window !== 'undefined' && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setUserLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-          });
-          setGpsStatus('GPS POSITION VERIFIED');
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          setUserLocation({ latitude: lat, longitude: lng });
+          
+          // Attempt to load from FastAPI backend. If it fails, falls back to local chargers centered around lat/lng
+          loadFromBackend(lat, lng);
         },
         (error) => {
           console.warn("Geolocation access denied or failed. Fallback to default center.", error);
           setUserLocation(DEFAULT_COORDS);
-          setGpsStatus('GPS FAILED - FALLBACK TO HUB');
+          loadFromBackend(DEFAULT_COORDS.latitude, DEFAULT_COORDS.longitude);
         },
         { enableHighAccuracy: true, timeout: 8000 }
       );
+    } else {
+      loadFromBackend(DEFAULT_COORDS.latitude, DEFAULT_COORDS.longitude);
     }
   }, []);
 
   const currentBase = userLocation || DEFAULT_COORDS;
-  const chargers = createMockChargers(currentBase.latitude, currentBase.longitude);
 
   const handleSelectCharger = (charger: Charger) => {
     setSelectedCharger(charger);
