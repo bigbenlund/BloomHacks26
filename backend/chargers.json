@@ -197,5 +197,5171 @@
       "session_finished": false,
       "transaction_finished": false
     }
+  },
+  {
+    "id": 113867,
+    "name": "Grand Bohemian Hotel Orlando - Tesla Destination",
+    "location": {
+      "lat": 28.538762,
+      "lng": -81.378713
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113868,
+    "name": "The Mall at Millenia - Tesla Destination",
+    "location": {
+      "lat": 28.484944,
+      "lng": -81.432871
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113869,
+    "name": "Loews Portofino Bay Hotel at Universal Orlando - Tesla Destination",
+    "location": {
+      "lat": 28.480068,
+      "lng": -81.459402
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113870,
+    "name": "DoubleTree by Hilton Hotel at the Entrance to Universal Orlando - Tesla Destination",
+    "location": {
+      "lat": 28.478965,
+      "lng": -81.45696
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113871,
+    "name": "Hard Rock Hotel at Universal Orlando - Tesla Destination",
+    "location": {
+      "lat": 28.47847,
+      "lng": -81.464687
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113873,
+    "name": "CityWalk at Universal Orlando Resort - Tesla Destination",
+    "location": {
+      "lat": 28.474705,
+      "lng": -81.464334
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 113878,
+    "name": "Courtyard Orlando Downtown - Tesla Destination",
+    "location": {
+      "lat": 28.554271,
+      "lng": -81.377852
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 117559,
+    "name": "SIMON FLORIDA MALL",
+    "location": {
+      "lat": 28.447274,
+      "lng": -81.395839
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 118683,
+    "name": "OS MANAGED HOWELL BRANCH 1",
+    "location": {
+      "lat": 28.624707,
+      "lng": -81.339269
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 118684,
+    "name": "OS MANAGED WP LK BALDWIN01",
+    "location": {
+      "lat": 28.576276,
+      "lng": -81.326806
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 145516,
+    "name": "OS MANAGED WP WARD PARK 01",
+    "location": {
+      "lat": 28.593453,
+      "lng": -81.322809
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 148923,
+    "name": "Camden Thornton Park",
+    "location": {
+      "lat": 28.5401691,
+      "lng": -81.3720781
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 149142,
+    "name": "OS MANAGED WP TENNIS CTR01",
+    "location": {
+      "lat": 28.588838,
+      "lng": -81.358935
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 151964,
+    "name": "OS MANAGED WP CADY WAY PK",
+    "location": {
+      "lat": 28.593827,
+      "lng": -81.317313
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 153042,
+    "name": "Bainbridge Winter Park location",
+    "location": {
+      "lat": 28.607677,
+      "lng": -81.3673109
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 161521,
+    "name": "HIGHWOODS ORL CAPITAL EV2",
+    "location": {
+      "lat": 28.541191,
+      "lng": -81.374065
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 161527,
+    "name": "HIGHWOODS ORL SEASIDE EV",
+    "location": {
+      "lat": 28.540114,
+      "lng": -81.37769
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 161528,
+    "name": "HIGHWOODS ORL LANDMARK1 EV1",
+    "location": {
+      "lat": 28.547058,
+      "lng": -81.374132
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 161677,
+    "name": "PALMER-ELECTRIC PALMER HQ 01",
+    "location": {
+      "lat": 28.590525,
+      "lng": -81.370895
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 166916,
+    "name": "ROLLINS COLLEGE WELLNESS CENTER",
+    "location": {
+      "lat": 28.592798,
+      "lng": -81.35131
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 167164,
+    "name": "The Florida Mall (Orlando, FL)",
+    "location": {
+      "lat": 28.44832,
+      "lng": -81.39505
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 167206,
+    "name": "CORPORATE SMALL PARK LOT",
+    "location": {
+      "lat": 28.549522,
+      "lng": -81.37623
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 169173,
+    "name": "The Delaney Hotel - Tesla Destination",
+    "location": {
+      "lat": 28.526026,
+      "lng": -81.376066
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 169963,
+    "name": "Hannibal Square",
+    "location": {
+      "lat": 28.595779,
+      "lng": -81.35737
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 179819,
+    "name": "HIGHWOODS ORL CAPITAL EV1",
+    "location": {
+      "lat": 28.541163,
+      "lng": -81.374065
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 185117,
+    "name": "THORNTON PARK EV STATION 1",
+    "location": {
+      "lat": 28.543107,
+      "lng": -81.369078
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 185219,
+    "name": "305 Palmetto Ave Parking",
+    "location": {
+      "lat": 28.54596835074688,
+      "lng": -81.37659345565032
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 185253,
+    "name": "THORNTON PARK EV STATION 2",
+    "location": {
+      "lat": 28.54307,
+      "lng": -81.369199
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 186332,
+    "name": "Winter Park, FL - Tesla Supercharger",
+    "location": {
+      "lat": 28.604986,
+      "lng": -81.366308
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 193597,
+    "name": "SEACOAST BANK 250 ORANGE AVE",
+    "location": {
+      "lat": 28.544973,
+      "lng": -81.379263
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 193772,
+    "name": "CFX EV CHARGE ORL TOWER 4010",
+    "location": {
+      "lat": 28.540456,
+      "lng": -81.322651
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 193773,
+    "name": "CFX EV CHARGE ORL TOWER 4025",
+    "location": {
+      "lat": 28.540563,
+      "lng": -81.322658
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 193774,
+    "name": "CFX EV CHARGE ORL TOWER 4020",
+    "location": {
+      "lat": 28.540521,
+      "lng": -81.322651
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 202677,
+    "name": "OS MANAGED WP LIBRARY",
+    "location": {
+      "lat": 28.597143,
+      "lng": -81.36327
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 211726,
+    "name": "MILLENIA STATION 2",
+    "location": {
+      "lat": 28.484886,
+      "lng": -81.432832
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 216515,
+    "name": "Modera Creative Village",
+    "location": {
+      "lat": 28.5496221,
+      "lng": -81.3861388
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 219850,
+    "name": "Lofts at Sodo Apartments",
+    "location": {
+      "lat": 28.5163334,
+      "lng": -81.3777709
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 220240,
+    "name": "THE FRED SAWGRASS",
+    "location": {
+      "lat": 28.511183,
+      "lng": -81.329675
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 221285,
+    "name": "HIGHWOODS ORL EOLA CENTER S1",
+    "location": {
+      "lat": 28.545901,
+      "lng": -81.374985
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 221430,
+    "name": "ROLLINS COLLEGE TRUIST GARAGE",
+    "location": {
+      "lat": 28.594432,
+      "lng": -81.349714
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 221782,
+    "name": "Orlando, FL - Millenia Plaza Way - Tesla Supercharger",
+    "location": {
+      "lat": 28.492358,
+      "lng": -81.429361
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 224613,
+    "name": "CFX EV CHARGE MAGNOLIA 4020",
+    "location": {
+      "lat": 28.536374,
+      "lng": -81.377185
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 224614,
+    "name": "CFX EV CHARGE MAGNOLIA 4025",
+    "location": {
+      "lat": 28.536408,
+      "lng": -81.377197
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 237621,
+    "name": "Orlando, FL - South Orange Blossom Trail - Tesla Supercharger",
+    "location": {
+      "lat": 28.448482,
+      "lng": -81.394596
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 251903,
+    "name": "MAITLAND INDEPENDENCE SQ",
+    "location": {
+      "lat": 28.627412,
+      "lng": -81.36504
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 252810,
+    "name": "IKEA USA ORLANDO 1",
+    "location": {
+      "lat": 28.482998,
+      "lng": -81.428026
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 252940,
+    "name": "CLIMATE FIRST STATION RIGHT",
+    "location": {
+      "lat": 28.587206,
+      "lng": -81.36478
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 252941,
+    "name": "CLIMATE FIRST STATION 2300",
+    "location": {
+      "lat": 28.587126,
+      "lng": -81.364807
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 253851,
+    "name": "MAITLAND LAKE LILY",
+    "location": {
+      "lat": 28.622744,
+      "lng": -81.365588
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 256581,
+    "name": "Hyatt House Across From Universal Orlando Resort - Tesla Destination",
+    "location": {
+      "lat": 28.475324,
+      "lng": -81.457444
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 259757,
+    "name": "MAITLAND FT. MAITLAND",
+    "location": {
+      "lat": 28.620155,
+      "lng": -81.364197
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 260496,
+    "name": "OS MANAGED HANNIBAL SQUARE",
+    "location": {
+      "lat": 28.599758,
+      "lng": -81.351657
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 260828,
+    "name": "OS MANAGED WP GARFIELD AVE",
+    "location": {
+      "lat": 28.599715,
+      "lng": -81.351653
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 260947,
+    "name": "Millenia Park One - EV Parking Garage",
+    "location": {
+      "lat": 28.4875738,
+      "lng": -81.4403421
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 261489,
+    "name": "Sun Plaza",
+    "location": {
+      "lat": 28.552687,
+      "lng": -81.469495
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 261827,
+    "name": "MILLENIA STATION 1",
+    "location": {
+      "lat": 28.484891,
+      "lng": -81.43287
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 303622,
+    "name": "Robinson Hub",
+    "location": {
+      "lat": 28.54616,
+      "lng": -81.381482
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 309258,
+    "name": "G-Deck",
+    "location": {
+      "lat": 28.525352,
+      "lng": -81.3772888
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 309259,
+    "name": "Orlando Health TM Center Garage",
+    "location": {
+      "lat": 28.5316308,
+      "lng": -81.3786928
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 310348,
+    "name": "Casa Verde Apartments",
+    "location": {
+      "lat": 28.52204579038155,
+      "lng": -81.28663236302205
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 310466,
+    "name": "IWORKSPACES IWORKSPACES",
+    "location": {
+      "lat": 28.555502,
+      "lng": -81.376557
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 310523,
+    "name": "Parker at Maitland Station",
+    "location": {
+      "lat": 28.63553,
+      "lng": -81.361669
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313819,
+    "name": "EPRI",
+    "location": {
+      "lat": 28.501052,
+      "lng": -81.429917
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313824,
+    "name": "Gardenia",
+    "location": {
+      "lat": 28.503061,
+      "lng": -81.423434
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313826,
+    "name": "Water Treatment",
+    "location": {
+      "lat": 28.602152,
+      "lng": -81.354787
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313888,
+    "name": "Emerging Tech Program 1",
+    "location": {
+      "lat": 28.503061,
+      "lng": -81.423434
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313905,
+    "name": "Beardall Senior Center",
+    "location": {
+      "lat": 28.5317,
+      "lng": -81.375514
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313906,
+    "name": "Blue Jacket Park",
+    "location": {
+      "lat": 28.574111,
+      "lng": -81.339806
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313907,
+    "name": "Callahan Community Center",
+    "location": {
+      "lat": 28.544391,
+      "lng": -81.388657
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313908,
+    "name": "CenterPlex",
+    "location": {
+      "lat": 28.548781,
+      "lng": -81.383749
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313909,
+    "name": "Central Parking Garage",
+    "location": {
+      "lat": 28.542225,
+      "lng": -81.380295
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313910,
+    "name": "Claudia Allen Senior Center",
+    "location": {
+      "lat": 28.520554,
+      "lng": -81.421199
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313911,
+    "name": "EOC Orlando Ops Center",
+    "location": {
+      "lat": 28.542813,
+      "lng": -81.319152
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313912,
+    "name": "College Park Community Center",
+    "location": {
+      "lat": 28.573021,
+      "lng": -81.384233
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313913,
+    "name": "Colonialtown Neighborhood",
+    "location": {
+      "lat": 28.561909,
+      "lng": -81.361081
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313914,
+    "name": "Creative Village",
+    "location": {
+      "lat": 28.548089,
+      "lng": -81.38419
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313915,
+    "name": "Dover Shores",
+    "location": {
+      "lat": 28.548513,
+      "lng": -81.386569
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313916,
+    "name": "Dr James R Smith Center",
+    "location": {
+      "lat": 28.520826,
+      "lng": -81.425237
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313917,
+    "name": "Dubsdread Golf Course",
+    "location": {
+      "lat": 28.582702,
+      "lng": -81.387074
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313918,
+    "name": "Eagle Nest Park",
+    "location": {
+      "lat": 28.5171,
+      "lng": -81.449722
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313919,
+    "name": "Englewood Neighborhood Center",
+    "location": {
+      "lat": 28.528992,
+      "lng": -81.301299
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313920,
+    "name": "Code Enforcement",
+    "location": {
+      "lat": 28.543968,
+      "lng": -81.320709
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313921,
+    "name": "Festival Park",
+    "location": {
+      "lat": 28.547404,
+      "lng": -81.346473
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313922,
+    "name": "Gaston Edwards Park",
+    "location": {
+      "lat": 28.562336,
+      "lng": -81.373453
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313923,
+    "name": "Geico Garage",
+    "location": {
+      "lat": 28.538114,
+      "lng": -81.38462
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313925,
+    "name": "John H Jackson Community Center",
+    "location": {
+      "lat": 28.533596,
+      "lng": -81.394304
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313926,
+    "name": "Lake Eola Park",
+    "location": {
+      "lat": 28.543278,
+      "lng": -81.370811
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313927,
+    "name": "Lake Fairview Park",
+    "location": {
+      "lat": 28.598502,
+      "lng": -81.413969
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313928,
+    "name": "Lake Lorna Doone Park - East",
+    "location": {
+      "lat": 28.541406,
+      "lng": -81.400079
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313929,
+    "name": "Lake Lorna Doone Park - West",
+    "location": {
+      "lat": 28.54016,
+      "lng": -81.403849
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313930,
+    "name": "Mennello Museum",
+    "location": {
+      "lat": 28.570019,
+      "lng": -81.367288
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313931,
+    "name": "Northwest Community Center",
+    "location": {
+      "lat": 28.561152,
+      "lng": -81.427469
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313932,
+    "name": "Park of the Americas",
+    "location": {
+      "lat": 28.541388,
+      "lng": -81.316877
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313933,
+    "name": "Primrose Center",
+    "location": {
+      "lat": 28.551385,
+      "lng": -81.346108
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313934,
+    "name": "Rosemont Community Center",
+    "location": {
+      "lat": 28.601512,
+      "lng": -81.439701
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313935,
+    "name": "Trotters Park",
+    "location": {
+      "lat": 28.598215,
+      "lng": -81.416466
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313936,
+    "name": "Wadeview Park",
+    "location": {
+      "lat": 28.516921,
+      "lng": -81.367632
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313947,
+    "name": "Reliable Plaza",
+    "location": {
+      "lat": 28.536018,
+      "lng": -81.379584
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313951,
+    "name": "Pershing",
+    "location": {
+      "lat": 28.500342,
+      "lng": -81.304008
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313968,
+    "name": "Leu Gardens",
+    "location": {
+      "lat": 28.567789,
+      "lng": -81.357122
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313980,
+    "name": "Orange County Public Works",
+    "location": {
+      "lat": 28.500687,
+      "lng": -81.418178
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313991,
+    "name": "Wingate by Wyndham",
+    "location": {
+      "lat": 28.486268,
+      "lng": -81.457166
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 313992,
+    "name": "Orange County Administrative Building",
+    "location": {
+      "lat": 28.539965,
+      "lng": -81.375224
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 314001,
+    "name": "ORMC-Copeland",
+    "location": {
+      "lat": 28.524692,
+      "lng": -81.380027
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 314002,
+    "name": "ORMC- Pavillion at Gore",
+    "location": {
+      "lat": 28.53131,
+      "lng": -81.379666
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 314105,
+    "name": "The Baldwin",
+    "location": {
+      "lat": 28.56716,
+      "lng": -81.2988
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 316192,
+    "name": "Classic Honda",
+    "location": {
+      "lat": 28.5520187,
+      "lng": -81.4290143
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 321137,
+    "name": "Orlando, FL - East Colonial Drive - Tesla Supercharger",
+    "location": {
+      "lat": 28.569422,
+      "lng": -81.278166
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 326020,
+    "name": "SWVP ORLANDO 390 NORTH",
+    "location": {
+      "lat": 28.547132,
+      "lng": -81.380218
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 328480,
+    "name": "OBE SOCIETY ORL L2R",
+    "location": {
+      "lat": 28.548489,
+      "lng": -81.379911
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 328481,
+    "name": "OBE SOCIETY ORL L2L",
+    "location": {
+      "lat": 28.548318,
+      "lng": -81.379449
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 328482,
+    "name": "OBE SOCIETY ORL L4C",
+    "location": {
+      "lat": 28.548305,
+      "lng": -81.379458
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 328564,
+    "name": "OBE SOCIETY ORL L4R",
+    "location": {
+      "lat": 28.548274,
+      "lng": -81.37946
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 328565,
+    "name": "OBE SOCIETY ORL L4L",
+    "location": {
+      "lat": 28.547925,
+      "lng": -81.379396
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 329186,
+    "name": "Luna at Lake Shadow",
+    "location": {
+      "lat": 28.6256081,
+      "lng": -81.4058232
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 329211,
+    "name": "SUNSTATEFORD NEW CAR AREA L",
+    "location": {
+      "lat": 28.553285,
+      "lng": -81.421888
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 329981,
+    "name": "SUNSTATEFORD NEW CAR AREA M",
+    "location": {
+      "lat": 28.553256,
+      "lng": -81.421835
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 330229,
+    "name": "MAITLAND SUNRAIL",
+    "location": {
+      "lat": 28.634724,
+      "lng": -81.361625
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 330575,
+    "name": "Orlando Utilities Commission",
+    "location": {
+      "lat": 28.5038246076126,
+      "lng": -81.4228450833523
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 332079,
+    "name": "SE Parcel Parking Garage",
+    "location": {
+      "lat": 28.57138828880075,
+      "lng": -81.40425104742926
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 334265,
+    "name": "TOYOTA OF ORL STATION 3",
+    "location": {
+      "lat": 28.5019,
+      "lng": -81.427718
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 334266,
+    "name": "TOYOTA OF ORL STATION 1 AND 2",
+    "location": {
+      "lat": 28.501932,
+      "lng": -81.42768
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 334268,
+    "name": "TOYOTA OF ORL STATION 7",
+    "location": {
+      "lat": 28.5051,
+      "lng": -81.426794
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 334269,
+    "name": "TOYOTA OF ORL STATION 4",
+    "location": {
+      "lat": 28.502017,
+      "lng": -81.42737
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 334270,
+    "name": "TOYOTA OF ORL STATION 5",
+    "location": {
+      "lat": 28.502026,
+      "lng": -81.427435
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335539,
+    "name": "City Hall",
+    "location": {
+      "lat": 28.594615,
+      "lng": -81.351156
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335541,
+    "name": "The Julian",
+    "location": {
+      "lat": 28.549394,
+      "lng": -81.387216
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335561,
+    "name": "OUC- Facilities Pershing",
+    "location": {
+      "lat": 28.500342,
+      "lng": -81.304008
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335562,
+    "name": "Jefferson Garage",
+    "location": {
+      "lat": 28.544155,
+      "lng": -81.380466
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335563,
+    "name": "Valencia College Lot A",
+    "location": {
+      "lat": 28.52359,
+      "lng": -81.462742
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335564,
+    "name": "Valencia College Lot F",
+    "location": {
+      "lat": 28.52359,
+      "lng": -81.462742
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335567,
+    "name": "Orange County Health Services",
+    "location": {
+      "lat": 28.512464,
+      "lng": -81.353434
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335568,
+    "name": "Orange County Med Exam Office",
+    "location": {
+      "lat": 28.51257,
+      "lng": -81.352238
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335572,
+    "name": "Orange County Youth & Family Services",
+    "location": {
+      "lat": 28.512813,
+      "lng": -81.358203
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335573,
+    "name": "Barnett Park",
+    "location": {
+      "lat": 28.560917,
+      "lng": -81.442138
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335574,
+    "name": "Turnbull Park",
+    "location": {
+      "lat": 28.483246,
+      "lng": -81.312585
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335575,
+    "name": "Marks Street Senior Center",
+    "location": {
+      "lat": 28.557406,
+      "lng": -81.37737
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335576,
+    "name": "CNL Garage",
+    "location": {
+      "lat": 28.537105,
+      "lng": -81.380674
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335578,
+    "name": "Orlando City Hall",
+    "location": {
+      "lat": 28.537672,
+      "lng": -81.379552
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335587,
+    "name": "Harris",
+    "location": {
+      "lat": 28.552036,
+      "lng": -81.364027
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335588,
+    "name": "Citrus Bowl",
+    "location": {
+      "lat": 28.539019,
+      "lng": -81.402752
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335590,
+    "name": "Dominos Pizza",
+    "location": {
+      "lat": 28.47055,
+      "lng": -81.397181
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335591,
+    "name": "Infusion Tea",
+    "location": {
+      "lat": 28.565861,
+      "lng": -81.38973
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335592,
+    "name": "Orlando Science Center",
+    "location": {
+      "lat": 28.571055,
+      "lng": -81.368081
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335600,
+    "name": "AH Orlando - Alden Garage Ground Floor",
+    "location": {
+      "lat": 28.573173,
+      "lng": -81.371006
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335601,
+    "name": "AH Orlando - PT Dr Parking - A - Elevators",
+    "location": {
+      "lat": 28.575124,
+      "lng": -81.369673
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 335602,
+    "name": "AH Orlando - GT Dr Parking - K - Elevators",
+    "location": {
+      "lat": 28.575124,
+      "lng": -81.369673
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 341877,
+    "name": "The Livano Grand National - LIV",
+    "location": {
+      "lat": 28.47028296529077,
+      "lng": -81.45343637811654
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 353808,
+    "name": "Orlando, FL - Edgewater Drive - Tesla Supercharger",
+    "location": {
+      "lat": 28.61061,
+      "lng": -81.415906
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 354390,
+    "name": "Winter Park",
+    "location": {
+      "lat": 28.592725,
+      "lng": -81.372404
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 354394,
+    "name": "Crowne Plaza",
+    "location": {
+      "lat": 28.552275,
+      "lng": -81.383476
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 354403,
+    "name": "AdventHealth P2 7th Floor",
+    "location": {
+      "lat": 28.5751245,
+      "lng": -81.369672
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 356424,
+    "name": "SUNSTATEFORD USED CAR LINK",
+    "location": {
+      "lat": 28.553715,
+      "lng": -81.420272
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 358860,
+    "name": "Hyatt Place Across From Universal Orlando Resort - Tesla Destination",
+    "location": {
+      "lat": 28.475062,
+      "lng": -81.45678
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 358893,
+    "name": "Westminster Winter Park - Tesla Destination",
+    "location": {
+      "lat": 28.583219,
+      "lng": -81.329284
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 359782,
+    "name": "Holiday Inn Express & Suites Orlando-Ocoee East - Tesla Destination",
+    "location": {
+      "lat": 28.549845,
+      "lng": -81.483416
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 359798,
+    "name": "The Phoenix Clinique - Tesla Destination",
+    "location": {
+      "lat": 28.486959,
+      "lng": -81.372256
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 361133,
+    "name": "Holler Honda",
+    "location": {
+      "lat": 28.57210821806264,
+      "lng": -81.30978357883305
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 371843,
+    "name": "Orlando, FL - West Grant Street - Tesla Supercharger",
+    "location": {
+      "lat": 28.516285,
+      "lng": -81.379986
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 374416,
+    "name": "Orlando Tennis Center",
+    "location": {
+      "lat": 28.568262,
+      "lng": -81.410779
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 374422,
+    "name": "AH Orlando - McRae Garage P2 7th Floor",
+    "location": {
+      "lat": 28.575124,
+      "lng": -81.369673
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 376530,
+    "name": "UCF - Downtown Parking Garage",
+    "location": {
+      "lat": 28.5463549,
+      "lng": -81.38880549999999
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 387411,
+    "name": "Rosalind Garage",
+    "location": {
+      "lat": 28.538822,
+      "lng": -81.375085
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 387415,
+    "name": "AH Orlando - P4 Garage",
+    "location": {
+      "lat": 28.575912,
+      "lng": -81.371809
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 395287,
+    "name": "IKEA Store 145 (Orlando, FL)",
+    "location": {
+      "lat": 28.48255,
+      "lng": -81.42869
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 397404,
+    "name": "Washington Park Library",
+    "location": {
+      "lat": 28.528435,
+      "lng": -81.448241
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 397406,
+    "name": "DataCap Testing",
+    "location": {
+      "lat": 28.500564,
+      "lng": -81.429505
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 398050,
+    "name": "AT&T DUAL",
+    "location": {
+      "lat": 28.592676,
+      "lng": -81.364724
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 399440,
+    "name": "Century Millenia",
+    "location": {
+      "lat": 28.47728,
+      "lng": -81.444252
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 399442,
+    "name": "Heritage on Millenia",
+    "location": {
+      "lat": 28.49289,
+      "lng": -81.42333
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 404923,
+    "name": "501 W. Church St. Garage",
+    "location": {
+      "lat": 28.54102701797474,
+      "lng": -81.38563202115307
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 416276,
+    "name": "OPTIMUS ENERGY WP CHRGNG HUB 7",
+    "location": {
+      "lat": 28.597659,
+      "lng": -81.352457
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 416277,
+    "name": "OPTIMUS ENERGY WP CHRGNG HUB 5",
+    "location": {
+      "lat": 28.597675,
+      "lng": -81.352436
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 416278,
+    "name": "OPTIMUS ENERGY WP CHRGNG HUB 3",
+    "location": {
+      "lat": 28.597673,
+      "lng": -81.352313
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 416284,
+    "name": "OPTIMUS ENERGY WP CHRGNG HUB 2",
+    "location": {
+      "lat": 28.597614,
+      "lng": -81.35263
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 416285,
+    "name": "OPTIMUS ENERGY WP CHRGNG HUB 6",
+    "location": {
+      "lat": 28.59764,
+      "lng": -81.352554
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 416298,
+    "name": "Landmark Center Garage",
+    "location": {
+      "lat": 28.54663857783927,
+      "lng": -81.37432814671824
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 416299,
+    "name": "Bank of America Plaza Garage",
+    "location": {
+      "lat": 28.53848328319701,
+      "lng": -81.3794392347336
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 416353,
+    "name": "OPTIMUS ENERGY WP CHRGNG HUB 1",
+    "location": {
+      "lat": 28.597657,
+      "lng": -81.352445
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 417083,
+    "name": "WINTER PARK PD #2",
+    "location": {
+      "lat": 28.600675,
+      "lng": -81.35457
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 417407,
+    "name": "AT&T SINGLE",
+    "location": {
+      "lat": 28.592617,
+      "lng": -81.364711
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 420773,
+    "name": "OPTIMUS ENERGY WP CHRGNG HUB 4",
+    "location": {
+      "lat": 28.597652,
+      "lng": -81.35243
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 434049,
+    "name": "AH Orlando - P1 Alden Garage 1st Floor",
+    "location": {
+      "lat": 28.573206,
+      "lng": -81.371017
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 445835,
+    "name": "The Yard at Ivanhoe",
+    "location": {
+      "lat": 28.5647603,
+      "lng": -81.3717345
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 84,
+    "recommendation": "HIGH RISK. Unencrypted connection allows billing credential extraction.",
+    "findings": [
+      {
+        "code": "CVE-2024-3812",
+        "title": "Unencrypted OCPP 1.6 Handshake",
+        "severity": "HIGH",
+        "risk_points": 84,
+        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
+      }
+    ],
+    "telemetry": {
+      "event_count": 521,
+      "duration_seconds": 65.4,
+      "current_demand_requests": 140,
+      "current_demand_responses": 140,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 448918,
+    "name": "Downtown Recreation Complex",
+    "location": {
+      "lat": 28.54721,
+      "lng": -81.388619
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 453194,
+    "name": "Camden Lake Eola",
+    "location": {
+      "lat": 28.5402726,
+      "lng": -81.3707352
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 456278,
+    "name": "FasCharge 493 Townstar Belle Isle FL",
+    "location": {
+      "lat": 28.45125,
+      "lng": -81.35572
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 459867,
+    "name": "MQMF LAKE HOUSE ORLANDO",
+    "location": {
+      "lat": 28.565992272783,
+      "lng": -81.3737718922219
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 460067,
+    "name": "Reliable Customer Parking",
+    "location": {
+      "lat": 28.536221,
+      "lng": -81.379724
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 460072,
+    "name": "Westmoreland- BEAM",
+    "location": {
+      "lat": 28.529892,
+      "lng": -81.393338
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "COMPROMISED",
+    "risk": 96,
+    "recommendation": "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts.",
+    "findings": [
+      {
+        "code": "CVE-2023-4512",
+        "title": "RFID Card Cloning & Replay Exploit",
+        "severity": "CRITICAL",
+        "risk_points": 96,
+        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
+      }
+    ],
+    "telemetry": {
+      "event_count": 890,
+      "duration_seconds": 150.0,
+      "current_demand_requests": 210,
+      "current_demand_responses": 210,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 460398,
+    "name": "Hard Rock Hotel",
+    "location": {
+      "lat": 28.47699855296403,
+      "lng": -81.46456298137105
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 461068,
+    "name": "FasCharge 495 TownStar Orlando",
+    "location": {
+      "lat": 28.545152616901,
+      "lng": -81.45906747285
+    },
+    "firmware": "EVerest v24.2.1",
+    "log_file": "simulated_on_demand",
+    "status": "SAFE",
+    "risk": 0,
+    "recommendation": "No major risk indicators were detected.",
+    "findings": [],
+    "telemetry": {
+      "event_count": 450,
+      "duration_seconds": 90.0,
+      "current_demand_requests": 120,
+      "current_demand_responses": 120,
+      "session_finished": true,
+      "transaction_finished": true
+    }
+  },
+  {
+    "id": 461376,
+    "name": "EAST ORL MITS STATION 1",
+    "location": {
+      "lat": 28.613781,
+      "lng": -81.309651
+    },
+    "firmware": "EVerest v24.1.2",
+    "log_file": "simulated_on_demand",
+    "status": "WARNING",
+    "risk": 32,
+    "recommendation": "Low threat. Safe to charge, though minor security updates are pending.",
+    "findings": [
+      {
+        "code": "CVE-2024-1188",
+        "title": "Minor Firmware Out-of-Date Alert",
+        "severity": "LOW",
+        "risk_points": 32,
+        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
+      }
+    ],
+    "telemetry": {
+      "event_count": 312,
+      "duration_seconds": 45.2,
+      "current_demand_requests": 88,
+      "current_demand_responses": 88,
+      "session_finished": true,
+      "transaction_finished": true
+    }
   }
 ]
