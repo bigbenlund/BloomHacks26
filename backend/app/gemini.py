@@ -13,24 +13,11 @@ client = genai.Client(
 )
 
 
-def explain_charger(charger):
+def explain_charger(charger: dict) -> str:
+    prompt = f"""You are explaining an EV charger's security status to an everyday driver with no technical background. Given this charger's findings and recommendation, write 2-3 short sentences explaining why it is or isn't safe to use, in plain language. Do not change the risk score or recommendation. Do not use jargon or CVE numbers. Return only the sentences.
 
-    prompt = f"""
-You are an EV charging cybersecurity expert.
-
-The following charger has already been analyzed.
-
-DO NOT change the risk score.
-
-DO NOT change the recommendation.
-
-Simply explain the findings in language an everyday EV driver would understand.
-
-Return only 2-3 sentences.
-
-Security Report:
-
-{json.dumps(charger, indent=2)}
+Findings: {json.dumps(charger.get("findings", []), indent=2)}
+Recommendation: {charger.get("recommendation", "No specific recommendation.")}
 """
 
     response = client.models.generate_content(
@@ -38,4 +25,4 @@ Security Report:
         contents=prompt
     )
 
-    return response.text
+    return response.text.strip()

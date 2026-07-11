@@ -29,7 +29,7 @@ const GOOGLE_MAPS_DARK_THEME = [
   { "featureType": "water", "elementType": "labels.text.fill", "stylers": [{ "color": "#1e293b" }] }
 ];
 
-const DEFAULT_CENTER = { lat: 34.020, lng: -118.485 }; // Santa Monica fallback
+const DEFAULT_CENTER = { lat: 28.6024, lng: -81.2001 }; // UCF fallback
 
 interface EVMapProps {
   chargers: Charger[];
@@ -161,17 +161,27 @@ export function EVMap({ chargers, selectedCharger, onSelectCharger, routeToCharg
 
     // Redraw markers
     chargers.forEach((charger) => {
-      const isSecure = charger.status === 'secure';
-      const color = isSecure ? '#10b981' : '#ef4444'; // Emerald vs. Alarm Red
-      const scale = isSecure ? 7 : 8;
+      const lat = charger.location?.lat;
+      const lng = charger.location?.lng;
+      if (typeof lat !== 'number' || typeof lng !== 'number') return;
 
-      // Custom shape: Shield or octagon
-      const path = isSecure
-        ? "M 0,-10 L 8,-6 L 8,2 C 8,7 4,11 0,13 C -4,11 -8,7 -8,2 L -8,-6 Z" // Shield
-        : "M -5,-10 L 5,-10 L 10,-5 L 10,5 L 5,10 L -5,10 L -10,5 L -10,-5 Z"; // Octagon Alert
+      const status = charger.status;
+      let color = '#10b981'; // SAFE -> Emerald Green
+      let scale = 7;
+      let path = "M 0,-10 L 8,-6 L 8,2 C 8,7 4,11 0,13 C -4,11 -8,7 -8,2 L -8,-6 Z"; // Shield for SAFE
+
+      if (status === 'COMPROMISED') {
+        color = '#ef4444'; // COMPROMISED -> Alarm Red
+        scale = 8;
+        path = "M -5,-10 L 5,-10 L 10,-5 L 10,5 L 5,10 L -5,10 L -10,5 L -10,-5 Z"; // Octagon Alert for COMPROMISED
+      } else if (status === 'CAUTION') {
+        color = '#f59e0b'; // CAUTION -> Cyber Orange
+        scale = 7.5;
+        path = "M 0,-10 L 10,6 L -10,6 Z"; // Triangle warning for CAUTION
+      }
 
       const marker = new window.google.maps.Marker({
-        position: { lat: charger.latitude, lng: charger.longitude },
+        position: { lat, lng },
         map: mapRef.current,
         title: charger.name,
         icon: {
@@ -196,14 +206,14 @@ export function EVMap({ chargers, selectedCharger, onSelectCharger, routeToCharg
   useEffect(() => {
     if (!mapLoaded || !mapRef.current || !directionsRendererRef.current || !window.google) return;
 
-    if (routeToCharger) {
+    if (routeToCharger && routeToCharger.location) {
       const directionsService = new window.google.maps.DirectionsService();
       const userLatLng = getUserLatLng();
       
       directionsService.route(
         {
           origin: userLatLng,
-          destination: { lat: routeToCharger.latitude, lng: routeToCharger.longitude },
+          destination: { lat: routeToCharger.location.lat, lng: routeToCharger.location.lng },
           travelMode: window.google.maps.TravelMode.DRIVING,
         },
         (result: any, status: any) => {
@@ -213,7 +223,7 @@ export function EVMap({ chargers, selectedCharger, onSelectCharger, routeToCharg
             // Adjust zoom to fit the route nicely
             const bounds = new window.google.maps.LatLngBounds();
             bounds.extend(new window.google.maps.LatLng(userLatLng.lat, userLatLng.lng));
-            bounds.extend(new window.google.maps.LatLng(routeToCharger.latitude, routeToCharger.longitude));
+            bounds.extend(new window.google.maps.LatLng(routeToCharger.location.lat, routeToCharger.location.lng));
             mapRef.current.fitBounds(bounds);
           } else {
             console.error("Directions request failed: " + status);
@@ -232,8 +242,9 @@ export function EVMap({ chargers, selectedCharger, onSelectCharger, routeToCharg
   // 4. Handle zooming / pan when charger selection changes from sidebar
   useEffect(() => {
     if (!mapLoaded || !mapRef.current || !selectedCharger || !window.google) return;
+    if (!selectedCharger.location) return;
     
-    mapRef.current.panTo({ lat: selectedCharger.latitude, lng: selectedCharger.longitude });
+    mapRef.current.panTo({ lat: selectedCharger.location.lat, lng: selectedCharger.location.lng });
     mapRef.current.setZoom(14);
   }, [mapLoaded, selectedCharger]);
 

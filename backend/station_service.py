@@ -15,8 +15,8 @@ NLR_ENDPOINT = (
     "api/alt-fuel-stations/v1/nearest.json"
 )
 
-ORLANDO_LATITUDE = 28.5383
-ORLANDO_LONGITUDE = -81.3792
+ORLANDO_LATITUDE = 28.6024
+ORLANDO_LONGITUDE = -81.2001
 
 
 def get_nlr_api_key() -> str:
