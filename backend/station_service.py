@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict, List, Optional
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -13,6 +13,10 @@ LOCAL_KEY_FILE = Path("nlr_api_key.txt")
 NLR_ENDPOINT = (
     "https://developer.nlr.gov/"
     "api/alt-fuel-stations/v1/nearest.json"
+)
+NLR_STATION_ENDPOINT = (
+    "https://developer.nlr.gov/"
+    "api/alt-fuel-stations/v1"
 )
 
 ORLANDO_LATITUDE = 28.6024
@@ -47,7 +51,7 @@ def get_nlr_api_key() -> str:
     if env_key:
         return env_key.strip()
 
-    cloud_error: Exception | None = None
+    cloud_error: Optional[Exception] = None
 
     try:
         import google.auth
@@ -95,7 +99,7 @@ def get_nlr_api_key() -> str:
 def fetch_orlando_stations(
     radius_miles: float = 30,
     limit: int = 200,
-) -> list[dict[str, Any]]:
+) -> List[Dict[str, Any]]:
     """
     Fetch public, operational EV stations near Orlando.
 
@@ -144,7 +148,7 @@ def fetch_orlando_stations(
             f"Could not connect to the NLR API: {error.reason}"
         ) from error
 
-    stations: list[dict[str, Any]] = []
+    stations: List[Dict[str, Any]] = []
 
     for station in payload.get("fuel_stations", []):
         station_id = station.get("id")
@@ -170,3 +174,58 @@ def fetch_orlando_stations(
 
     # Stable ordering keeps CSV-to-station assignment deterministic.
     return sorted(stations, key=lambda station: station["id"])
+
+
+def fetch_station_by_id(station_id: str or int) -> Dict[str, Any]:
+    """
+    Fetch an individual NLR station by its numeric ID.
+    """
+    if station_id is None or str(station_id).strip() == "":
+        raise ValueError("station_id must be a non-empty string or integer.")
+
+    api_key = get_nlr_api_key()
+    request = Request(
+        f"{NLR_STATION_ENDPOINT}/{station_id}.json?{urlencode({'api_key': api_key})}",
+        headers={
+            "Accept": "application/json",
+            "User-Agent": "EcoShield-SecureRoute/1.0",
+        },
+    )
+
+    try:
+        with urlopen(request, timeout=30) as response:
+            payload = json.load(response)
+    except HTTPError as error:
+        details = error.read().decode("utf-8", errors="replace")
+        raise RuntimeError(
+            f"NLR station lookup returned HTTP {error.code}: {details}"
+        ) from error
+    except URLError as error:
+        raise RuntimeError(
+            f"Could not connect to the NLR API: {error.reason}"
+        ) from error
+
+    station = payload.get("fuel_stations")
+    if not station or not isinstance(station, list):
+        raise RuntimeError("NLR station lookup returned an unexpected payload.")
+
+    station = station[0]
+    station_id_value = station.get("id")
+    latitude = station.get("latitude")
+    longitude = station.get("longitude")
+
+    if station_id_value is None:
+        raise RuntimeError("NLR station lookup response missing station ID.")
+    if latitude is None or longitude is None:
+        raise RuntimeError(
+            f"NLR station lookup response for ID {station_id} is missing coordinates."
+        )
+
+    return {
+        "id": station_id_value,
+        "name": station.get("station_name", f"Station {station_id_value}"),
+        "location": {
+            "lat": float(latitude),
+            "lng": float(longitude),
+        },
+    }

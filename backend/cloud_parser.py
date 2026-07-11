@@ -3,22 +3,23 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict, List, Optional
 
 # Ensure backend directory is in the path for modular imports
 sys.path.append(str(Path(__file__).resolve().parent))
 
-from station_service import fetch_orlando_stations
+from station_service import fetch_orlando_stations, fetch_station_by_id
 from app.detector import detect_anomalies
 from app.gemini import explain_charger
 
 BACKEND_DIR = Path(__file__).resolve().parent
 LOG_DIR = BACKEND_DIR / "EV_logs"
 METADATA_FILE = BACKEND_DIR / "charger_metadata.csv"
+STATION_MAPPING_FILE = BACKEND_DIR / "charger_station_map.csv"
 OUTPUT_FILE = BACKEND_DIR / "chargers.json"
 
 # Demo-only firmware advisory profiles.
-FIRMWARE_PROFILES: dict[str, dict[str, Any]] = {
+FIRMWARE_PROFILES: Dict[str, Dict[str, Any]] = {
     "1.2.0": {
         "advisory_id": "DEMO-ADV-001",
         "severity": "HIGH",
@@ -38,7 +39,7 @@ def slug_from_filename(filename: str) -> str:
     return Path(filename).stem.replace("_", "-").replace(" ", "-").lower()
 
 
-def parse_timestamp(value: str) -> datetime | None:
+def parse_timestamp(value: str) -> Optional[datetime]:
     value = value.strip()
     if not value:
         return None
@@ -58,9 +59,9 @@ def detect_delimiter(path: Path) -> str:
         return "\t" if "\t" in sample else ","
 
 
-def read_log(log_path: Path) -> list[dict[str, str]]:
+def read_log(log_path: Path) -> List[Dict[str, str]]:
     delimiter = detect_delimiter(log_path)
-    entries: list[dict[str, str]] = []
+    entries: List[Dict[str, str]] = []
 
     with log_path.open(
         "r",
@@ -86,7 +87,7 @@ def read_log(log_path: Path) -> list[dict[str, str]]:
     return entries
 
 
-def load_metadata() -> dict[str, dict[str, str]]:
+def load_metadata() -> Dict[str, Dict[str, str]]:
     """
     Returns metadata indexed by log filename.
     """
@@ -107,6 +108,55 @@ def load_metadata() -> dict[str, dict[str, str]]:
     }
 
 
+def load_station_mapping() -> Dict[str, str]:
+    """
+    Read explicit static station mappings between CSV filenames and NLR station IDs.
+    """
+    if not STATION_MAPPING_FILE.exists():
+        print(
+            f"Warning: Station mapping file not found: {STATION_MAPPING_FILE}. "
+            "No explicit log-to-station mappings will be applied."
+        )
+        return {}
+
+    with STATION_MAPPING_FILE.open(
+        "r",
+        newline="",
+        encoding="utf-8-sig",
+    ) as file:
+        reader = csv.DictReader(file)
+        fieldnames = {name.strip() for name in (reader.fieldnames or []) if name}
+
+        required_columns = {"log_file", "nlr_station_id"}
+        missing = required_columns - fieldnames
+        if missing:
+            raise ValueError(
+                "Station mapping file missing required columns: "
+                + ", ".join(sorted(missing))
+            )
+
+        mapping: Dict[str, str] = {}
+        for row_number, row in enumerate(reader, start=2):
+            log_file = row.get("log_file", "").strip()
+            station_id = row.get("nlr_station_id", "").strip()
+
+            if not log_file or not station_id:
+                print(
+                    f"Warning: Ignoring incomplete mapping row {row_number} "
+                    f"in {STATION_MAPPING_FILE}."
+                )
+                continue
+
+            if log_file in mapping:
+                raise ValueError(
+                    f"Duplicate log_file entry in station mapping file: {log_file}"
+                )
+
+            mapping[log_file] = station_id
+
+    return mapping
+
+
 def discover_logs() -> list[Path]:
     """
     Finds every CSV file inside logs/, including nested folders.
@@ -121,7 +171,7 @@ def discover_logs() -> list[Path]:
     )
 
 
-def generated_metadata(log_path: Path, index: int) -> dict[str, str]:
+def generated_metadata(log_path: Path, index: int) -> Dict[str, str]:
     """
     Creates fallback metadata for logs not listed in charger_metadata.csv.
     """
@@ -139,17 +189,17 @@ def generated_metadata(log_path: Path, index: int) -> dict[str, str]:
     }
 
 
-def contains(events: list[str], phrase: str) -> bool:
+def contains(events: List[str], phrase: str) -> bool:
     phrase = phrase.lower()
     return any(phrase in event.lower() for event in events)
 
 
-def count(events: list[str], phrase: str) -> int:
+def count(events: List[str], phrase: str) -> int:
     phrase = phrase.lower()
     return sum(phrase in event.lower() for event in events)
 
 
-def first_index(events: list[str], phrase: str) -> int | None:
+def first_index(events: List[str], phrase: str) -> Optional[int]:
     phrase = phrase.lower()
 
     for index, event in enumerate(events):
@@ -159,7 +209,7 @@ def first_index(events: list[str], phrase: str) -> int | None:
     return None
 
 
-def parse_location(metadata: dict[str, str]) -> dict[str, float] | None:
+def parse_location(metadata: Dict[str, str]) -> Optional[Dict[str, float]]:
     lat = metadata.get("lat", "").strip()
     lng = metadata.get("lng", "").strip()
 
@@ -174,9 +224,9 @@ def parse_location(metadata: dict[str, str]) -> dict[str, float] | None:
 
 def rule_based_analyze(
     log_path: Path,
-    metadata: dict[str, str],
-    api_station: dict[str, Any] | None = None,
-) -> dict[str, Any]:
+    metadata: Dict[str, str],
+    api_station: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
     """
     Deterministically scores EVerest log files in the same output shape as detect_anomalies().
     Used as an offline/network error fallback for Agent 1.
@@ -184,7 +234,7 @@ def rule_based_analyze(
     entries = read_log(log_path)
     events = [entry["event"] for entry in entries]
 
-    findings: list[dict[str, Any]] = []
+    findings: List[Dict[str, Any]] = []
     risk = 0
 
     def add_finding(
@@ -384,9 +434,9 @@ def rule_based_analyze(
 
 def analyze_charger(
     log_path: Path,
-    metadata: dict[str, str],
-    api_station: dict[str, Any] | None = None,
-) -> dict[str, Any]:
+    metadata: Dict[str, str],
+    api_station: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
     """
     Orchestrates the offline Two-Agent Gemini intelligence chain for a single charger.
     """
@@ -457,19 +507,31 @@ def analyze_charger(
     return charger
 
 
-def build_chargers() -> list[dict[str, Any]]:
+def build_chargers() -> List[Dict[str, Any]]:
     """
-    Pairs discovered log files and active Orlando NREL API stations, and compiles
-    both audited and deterministically simulated charger profiles.
+    Pairs discovered log files with explicit NLR station mappings and active
+    Orlando NLR API stations, then compiles audited charger profiles.
     """
     metadata_by_filename = load_metadata()
+    station_mapping = load_station_mapping()
     log_paths = discover_logs()
 
     if not log_paths:
         raise RuntimeError("No CSV files were found inside logs/.")
 
+    station_id_to_logs: Dict[str, List[str]] = {}
+    for log_file, station_id in station_mapping.items():
+        station_id_to_logs.setdefault(station_id, []).append(log_file)
+
+    for station_id, files in station_id_to_logs.items():
+        if len(files) > 1:
+            print(
+                f"Warning: Station ID {station_id} is mapped from multiple log files: "
+                f"{', '.join(files)}"
+            )
+
     try:
-        # Fetch Florida NREL/NLR stations within a 50-mile radius (capped at 200 documents)
+        # Fetch Florida NRL/NLR stations within a 50-mile radius (capped at 200 documents)
         api_stations = fetch_orlando_stations(
             radius_miles=50,
             limit=200,
@@ -482,140 +544,97 @@ def build_chargers() -> list[dict[str, Any]]:
         print("Continuing with local metadata fallback.")
         api_stations = []
 
-    results: list[dict[str, Any]] = []
-    total_to_process = max(len(api_stations), len(log_paths))
+    mapped_station_ids = {station_id for station_id in station_mapping.values()}
+    direct_station_cache: Dict[str, Dict[str, Any]] = {}
+    for station_id in sorted(mapped_station_ids, key=str):
+        try:
+            station = fetch_station_by_id(station_id)
+            direct_station_cache[str(station["id"])] = station
+        except Exception as error:
+            print(
+                f"Warning: Direct lookup for station ID {station_id} failed: {error}. "
+                "Falling back to local metadata."
+            )
 
-    for i in range(total_to_process):
-        api_station = api_stations[i] if i < len(api_stations) else None
+    stations_by_id = {
+        str(station["id"]): station
+        for station in api_stations
+    }
+    stations_by_id.update(direct_station_cache)
 
-        if i < len(log_paths):
-            log_path = log_paths[i]
-            metadata = metadata_by_filename.get(log_path.name)
+    results: List[Dict[str, Any]] = []
+    processed_station_ids: set[str] = set()
 
-            if metadata is None:
-                metadata = generated_metadata(log_path, i + 1)
-            else:
-                metadata = dict(metadata)
-                metadata["source"] = "charger_metadata.csv"
+    for index, log_path in enumerate(log_paths, start=1):
+        metadata = metadata_by_filename.get(log_path.name)
 
-            try:
-                result = analyze_charger(
-                    log_path=log_path,
-                    metadata=metadata,
-                    api_station=api_station,
-                )
-                results.append(result)
-                print(
-                    f"Processed physical log {log_path.name} -> {result['name']} ({result['status']})"
-                )
-            except Exception as error:
-                print(f"Error processing physical log {log_path.name}: {error}")
+        if metadata is None:
+            metadata = generated_metadata(log_path, index)
         else:
-            if not api_station:
-                continue
+            metadata = dict(metadata)
+            metadata["source"] = "charger_metadata.csv"
 
-            station_id = api_station["id"]
-            mod = station_id % 5
-
-            if mod == 0:
-                status = "COMPROMISED"
-                risk = 84
-                recommendation = "HIGH RISK. Unencrypted connection allows billing credential extraction."
-                findings = [
-                    {
-                        "code": "CVE-2024-3812",
-                        "title": "Unencrypted OCPP 1.6 Handshake",
-                        "severity": "HIGH",
-                        "evidence": "Unencrypted handshakes over standard HTTP WebSocket port 80. Network sniffer can intercept charging commands, start/stop charge sessions, and access billing details. Active Man-in-the-Middle (MitM) arp spoofing detected on local switch."
-                    }
-                ]
-                telemetry = {
-                    "event_count": 521,
-                    "duration_seconds": 65.4,
-                    "current_demand_requests": 140,
-                    "current_demand_responses": 140,
-                    "session_finished": True,
-                    "transaction_finished": True
-                }
-            elif mod == 1:
-                status = "CAUTION"
-                risk = 32
-                recommendation = "Low threat. Safe to charge, though minor security updates are pending."
-                findings = [
-                    {
-                        "code": "CVE-2024-1188",
-                        "title": "Minor Firmware Out-of-Date Alert",
-                        "severity": "LOW",
-                        "evidence": "Firmware hash mismatch: minor version runs EVerest v24.1.2 instead of the latest v24.2.1. However, encryption handshakes are intact and safe."
-                    }
-                ]
-                telemetry = {
-                    "event_count": 312,
-                    "duration_seconds": 45.2,
-                    "current_demand_requests": 88,
-                    "current_demand_responses": 88,
-                    "session_finished": True,
-                    "transaction_finished": True
-                }
-            elif mod == 2:
-                status = "COMPROMISED"
-                risk = 96
-                recommendation = "CRITICAL RISK. Avoid this station. Third party may gain access to vehicle billing accounts."
-                findings = [
-                    {
-                        "code": "CVE-2023-4512",
-                        "title": "RFID Card Cloning & Replay Exploit",
-                        "severity": "CRITICAL",
-                        "evidence": "Vulnerable firmware version runs insecure ISO 15118 RFID handshakes. Attackers can clone valid driver RFIDs by passive listening and replay them."
-                    }
-                ]
-                telemetry = {
-                    "event_count": 890,
-                    "duration_seconds": 150.0,
-                    "current_demand_requests": 210,
-                    "current_demand_responses": 210,
-                    "session_finished": True,
-                    "transaction_finished": True
-                }
+        api_station = None
+        station_id = station_mapping.get(log_path.name)
+        if station_id:
+            api_station = stations_by_id.get(station_id)
+            if api_station is None:
+                print(
+                    f"Warning: Mapped station ID {station_id} for log "
+                    f"{log_path.name} was not found in NLR lookup results. "
+                    "Using local metadata fallback."
+                )
             else:
-                status = "SAFE"
-                risk = 0
-                recommendation = "No major risk indicators were detected."
-                findings = []
-                telemetry = {
-                    "event_count": 450,
-                    "duration_seconds": 90.0,
-                    "current_demand_requests": 120,
-                    "current_demand_responses": 120,
-                    "session_finished": True,
-                    "transaction_finished": True
-                }
+                processed_station_ids.add(str(api_station["id"]))
+        else:
+            print(
+                f"Warning: No station mapping for log {log_path.name}. "
+                "Using local metadata fallback."
+            )
 
-            charger_doc = {
-                "id": station_id,
+        try:
+            result = analyze_charger(
+                log_path=log_path,
+                metadata=metadata,
+                api_station=api_station,
+            )
+            results.append(result)
+            print(
+                f"Processed physical log {log_path.name} -> {result['name']} "
+                f"({result['status']})"
+            )
+        except Exception as error:
+            print(f"Error processing physical log {log_path.name}: {error}")
+
+    for api_station in api_stations:
+        station_id = str(api_station["id"])
+        if station_id in processed_station_ids:
+            continue
+
+        results.append(
+            {
+                "id": api_station["id"],
                 "name": api_station["name"],
                 "location": api_station["location"],
-                "firmware": "EVerest v24.2.1" if status == "SAFE" else "EVerest v24.1.2",
-                "log_file": "simulated_on_demand",
-                "status": status,
-                "risk": risk,
-                "recommendation": recommendation,
-                "findings": findings,
-                "telemetry": telemetry
+                "firmware": "unknown",
+                "log_file": None,
+                "status": "UNSCANNED",
+                "risk": None,
+                "recommendation": (
+                    "No EVerest CSV log is mapped to this station, so it has "
+                    "not been analyzed."
+                ),
+                "findings": [],
+                "telemetry": {
+                    "event_count": 0,
+                    "duration_seconds": None,
+                    "current_demand_requests": 0,
+                    "current_demand_responses": 0,
+                    "session_finished": False,
+                    "transaction_finished": False,
+                },
             }
-
-            # Performance optimization: Pre-bake driver summaries for simulated template nodes
-            # to avoid hundreds of slow, redundant serial Gemini API calls.
-            if mod == 0:
-                charger_doc["driver_summary"] = "Avoid utilizing this charger if possible. It is communicating over an insecure, unencrypted WebSocket protocol, making it vulnerable to local packet interception."
-            elif mod == 1:
-                charger_doc["driver_summary"] = "This charger is running an older firmware release. While its encryption is active and intact, a non-critical software update is pending."
-            elif mod == 2:
-                charger_doc["driver_summary"] = "Do not use this station. The charger is running an outdated firmware version vulnerable to RFID cloning, and multiple authentication failures have been flagged."
-            else:
-                charger_doc["driver_summary"] = "This charging station is fully secured with verified encrypted handshakes. All security systems are green and safe to connect."
-
-            results.append(charger_doc)
+        )
 
     return results
 
