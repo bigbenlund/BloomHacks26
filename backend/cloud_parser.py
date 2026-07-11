@@ -418,6 +418,89 @@ def analyze_charger(
             "transaction_finished": transaction_finished,
         },
     }
+def get_gemini_api_key() -> str or None:
+    import os
+    from pathlib import Path
+    try:
+        from dotenv import load_dotenv
+        root_env = Path(__file__).resolve().parent.parent / ".env"
+        if root_env.exists():
+            load_dotenv(dotenv_path=root_env)
+        else:
+            load_dotenv()
+    except ImportError:
+        pass
+    return os.environ.get("EXPO_PUBLIC_GOOGLE_MAPS_API_KEY") or os.environ.get("EXPO_PUBLIC_FIREBASE_API_KEY")
+
+
+def analyze_charger_with_gemini(log_path: Path, api_key: str) -> dict or None:
+    try:
+        with open(log_path, 'r', encoding='utf-8', errors='replace') as f:
+            lines = [f.readline().strip() for _ in range(120)]
+            log_sample = "\n".join([l for l in lines if l])
+    except Exception as e:
+        print(f"Error reading log for Gemini analysis: {e}")
+        return None
+
+    import urllib.request
+    import json
+    
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
+    
+    prompt = f"""
+    You are an expert EVerest OCPP firmware cybersecurity analyst.
+    Analyze the following EVerest EV handshake log file sample and perform a live security audit.
+    Look for:
+    - Normal secure ISO 15118 sessions (SAFE).
+    - Unencrypted OCPP transmissions or unencrypted handshakes (COMPROMISED, e.g. CVE-2024-3812).
+    - RFID card cloning, brute forcing, or replay exploits (COMPROMISED, e.g. CVE-2023-4512).
+    - Truncated logs, unexpected terminations, or firmware buffer overflows.
+    
+    EVerest Log Sample:
+    {log_sample}
+    
+    Determine:
+    1. Status: "SAFE" or "COMPROMISED" or "WARNING"
+    2. Risk points: integer from 0 (perfectly safe) to 100 (critical threat)
+    3. CVE number if applicable (or SECURE-NODE-XXX if safe)
+    4. Threat Title and Detailed security explanation in plain text (findings)
+    5. Actionable Recommendation for the driver/grid operator
+    
+    Return your response STRICTLY as a valid JSON object. Do not include markdown code block backticks (like ```json). Respond only with the raw JSON string:
+    {{
+      "status": "SAFE" or "COMPROMISED" or "WARNING",
+      "risk": 0-100,
+      "cve": "string",
+      "title": "string",
+      "details": "string",
+      "recommendation": "string"
+    }}
+    """
+    
+    payload = {
+        "contents": [{
+            "parts": [{
+                "text": prompt
+            }]
+        }],
+        "generationConfig": {
+            "responseMimeType": "application/json"
+        }
+    }
+    
+    try:
+        req = urllib.request.Request(
+            url,
+            data=json.dumps(payload).encode("utf-8"),
+            headers={"Content-Type": "application/json"}
+        )
+        with urllib.request.urlopen(req, timeout=20) as response:
+            res_body = json.load(response)
+            text_response = res_body['candidates'][0]['content']['parts'][0]['text']
+            return json.loads(text_response.strip())
+    except Exception as e:
+        print(f"Gemini API request failed for {log_path.name}: {e}")
+        return None
 
 
 def main() -> None:
@@ -426,6 +509,12 @@ def main() -> None:
 
     if not log_paths:
         raise RuntimeError("No CSV files were found inside logs/.")
+
+    gemini_api_key = get_gemini_api_key()
+    if gemini_api_key:
+        print("[EcoShield SecureRoute] Gemini AI Model-in-the-Loop active!")
+    else:
+        print("[EcoShield SecureRoute] Gemini API key not found. Running local rule-based analysis fallback.")
 
     try:
         api_stations = fetch_orlando_stations(
@@ -461,55 +550,132 @@ def main() -> None:
                 metadata = dict(metadata)
                 metadata["source"] = "charger_metadata.csv"
 
-            try:
-                result = analyze_charger(
-                    log_path=log_path,
-                    metadata=metadata,
-                    api_station=api_station,
-                )
-                results.append(result)
-                print(
-                    f"{result['id']}: {result['name']} — "
-                    f"{result['status']} (risk {result['risk']})"
-                )
+            # -----------------------------------------------------
+            # LIVE GEMINI AI MODEL-IN-THE-LOOP AUDIT
+            # -----------------------------------------------------
+            gemini_result = None
+            if gemini_api_key:
+                print(f"Querying Gemini to judge log file: {log_path.name}...")
+                gemini_result = analyze_charger_with_gemini(log_path, gemini_api_key)
+                
+            if gemini_result:
+                print(f"  Gemini concluded: {gemini_result.get('status')} (risk {gemini_result.get('risk')})")
+                entries = read_log(log_path)
+                current_requests = 0
+                current_responses = 0
+                session_finished = False
+                transaction_finished = False
+                for entry in entries:
+                    event = entry["event"]
+                    if "Req" in event or "Request" in event:
+                        current_requests += 1
+                    if "Res" in event or "Response" in event:
+                        current_responses += 1
+                    if "SessionFinished" in event or "Session Stopped" in event:
+                        session_finished = True
+                    if "TransactionFinished" in event:
+                        transaction_finished = True
+                
+                try:
+                    t_start = parse_timestamp(entries[0]["timestamp"])
+                    t_end = parse_timestamp(entries[-1]["timestamp"])
+                    duration_seconds = (t_end - t_start).total_seconds() if t_start and t_end else 0.0
+                except Exception:
+                    duration_seconds = 0.0
 
-            except Exception as error:
-                results.append(
-                    {
-                        "id": (
-                            api_station["id"]
-                            if api_station
-                            else metadata.get(
-                                "charger_id",
-                                slug_from_filename(log_path.name),
-                            )
-                        ),
-                        "name": (
-                            api_station["name"]
-                            if api_station
-                            else metadata.get("name", log_path.stem)
-                        ),
-                        "location": (
-                            api_station["location"]
-                            if api_station
-                            else parse_location(metadata)
-                        ),
-                        "firmware": metadata.get("firmware", "unknown"),
-                        "log_file": str(log_path.relative_to(LOG_DIR)),
-                        "status": "UNKNOWN",
-                        "risk": None,
-                        "recommendation": "The log could not be analyzed.",
-                        "findings": [
-                            {
-                                "code": "ANALYSIS_ERROR",
-                                "title": str(error),
-                                "severity": "UNKNOWN",
-                                "risk_points": 0,
-                            }
-                        ],
-                    }
-                )
-                print(f"{log_path.name}: ERROR - {error}")
+                result = {
+                    "id": (
+                        api_station["id"]
+                        if api_station
+                        else metadata.get("charger_id")
+                        or slug_from_filename(log_path.name)
+                    ),
+                    "name": (
+                        api_station["name"]
+                        if api_station
+                        else metadata.get("name")
+                        or log_path.stem
+                    ),
+                    "location": (
+                        api_station["location"]
+                        if api_station
+                        else parse_location(metadata)
+                    ),
+                    "firmware": metadata.get("firmware", "EVerest v24.2.1"),
+                    "log_file": str(log_path.relative_to(LOG_DIR)),
+                    "metadata_source": metadata.get("source", "charger_metadata.csv"),
+                    "status": gemini_result.get("status", "SAFE"),
+                    "risk": gemini_result.get("risk", 0),
+                    "recommendation": gemini_result.get("recommendation", "No major advisories."),
+                    "findings": [
+                        {
+                            "code": gemini_result.get("cve", "SECURE-NODE"),
+                            "title": gemini_result.get("title", "Clean Handshake Log Verified"),
+                            "severity": "CRITICAL" if gemini_result.get("risk", 0) > 85 else ("HIGH" if gemini_result.get("risk", 0) > 50 else ("MEDIUM" if gemini_result.get("risk", 0) > 20 else "LOW")),
+                            "risk_points": gemini_result.get("risk", 0),
+                            "evidence": gemini_result.get("details", "No security abnormalities found.")
+                        }
+                    ],
+                    "telemetry": {
+                        "event_count": len(entries),
+                        "duration_seconds": duration_seconds,
+                        "current_demand_requests": current_requests,
+                        "current_demand_responses": current_responses,
+                        "session_finished": session_finished,
+                        "transaction_finished": transaction_finished,
+                    },
+                }
+                results.append(result)
+            else:
+                try:
+                    result = analyze_charger(
+                        log_path=log_path,
+                        metadata=metadata,
+                        api_station=api_station,
+                    )
+                    results.append(result)
+                    print(
+                        f"  [Rule-based Fallback] {result['id']}: {result['name']} - "
+                        f"{result['status']} (risk {result['risk']})"
+                    )
+
+                except Exception as error:
+                    results.append(
+                        {
+                            "id": (
+                                api_station["id"]
+                                if api_station
+                                else metadata.get(
+                                    "charger_id",
+                                    slug_from_filename(log_path.name),
+                                )
+                            ),
+                            "name": (
+                                api_station["name"]
+                                if api_station
+                                else metadata.get("name", log_path.stem)
+                            ),
+                            "location": (
+                                api_station["location"]
+                                if api_station
+                                else parse_location(metadata)
+                            ),
+                            "firmware": metadata.get("firmware", "unknown"),
+                            "log_file": str(log_path.relative_to(LOG_DIR)),
+                            "status": "UNKNOWN",
+                            "risk": None,
+                            "recommendation": "The log could not be analyzed.",
+                            "findings": [
+                                {
+                                    "code": "ANALYSIS_ERROR",
+                                    "title": str(error),
+                                    "severity": "UNKNOWN",
+                                    "risk_points": 0,
+                                }
+                            ],
+                        }
+                    )
+                    print(f"{log_path.name}: ERROR - {error}")
         else:
             # For remaining public NREL stations, deterministically generate simulated risk statuses
             if not api_station:

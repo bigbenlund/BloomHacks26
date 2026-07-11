@@ -344,6 +344,10 @@ export default function SecurityDashboardScreen() {
                   </ThemedText>
                 </View>
                 
+                <ThemedText type="code" style={{ fontSize: 10, color: theme.cyberCyan, marginBottom: 4 }}>
+                  DATABASE NODE ID: {selectedCharger.id}
+                </ThemedText>
+                
                 <ThemedText type="small" themeColor="textSecondary" style={styles.detailAddress}>
                   📍 {selectedCharger.address}
                 </ThemedText>
