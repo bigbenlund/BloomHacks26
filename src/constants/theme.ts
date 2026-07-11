@@ -28,6 +28,7 @@ export const Colors = {
     primaryText: '#FFFFFF',
     card: '#FFFFFF',
     map: Brand.mapTint,
+    neonCyan: '#00E5FF',
   },
   dark: {
     text: '#FFFFFF',
@@ -40,6 +41,7 @@ export const Colors = {
     primaryText: '#FFFFFF',
     card: '#1C1C22',
     map: Brand.mapTintDark,
+    neonCyan: '#00E5FF',
   },
 } as const;
 

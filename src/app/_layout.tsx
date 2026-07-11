@@ -1,11 +1,18 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { AuthProvider, useAuth } from '@/contexts/auth-context';
 import { ColorSchemeProvider, useColorScheme } from '@/contexts/color-scheme-context';
+import { SettingsNavProvider, useSettingsNav } from '@/contexts/settings-nav-context';
+import { UserStationsProvider } from '@/contexts/user-stations-context';
 import { Brand, Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
+import { SettingsScreen } from '@/components/settings-screen';
+import { LoginScreen } from '@/components/login-screen';
+import AppTabs from '@/components/app-tabs';
+import { AnimatedSplashOverlay } from '@/components/animated-icon';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -33,6 +40,30 @@ const AppDarkTheme = {
   },
 };
 
+function AppGate() {
+  const { user, loading } = useAuth();
+  const { isSettingsOpen } = useSettingsNav();
+  const theme = useTheme();
+
+  if (loading) {
+    return (
+      <View style={[styles.loading, { backgroundColor: theme.background }]}>
+        <ActivityIndicator size="large" color={Brand.primary} />
+      </View>
+    );
+  }
+
+  if (!user) {
+    return <LoginScreen />;
+  }
+
+  return (
+    <UserStationsProvider>
+      {isSettingsOpen ? <SettingsScreen /> : <AppTabs />}
+    </UserStationsProvider>
+  );
+}
+
 function RootLayoutContent() {
   const colorScheme = useColorScheme();
 
@@ -40,7 +71,9 @@ function RootLayoutContent() {
     <ThemeProvider value={colorScheme === 'dark' ? AppDarkTheme : LightTheme}>
       <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
       <AnimatedSplashOverlay />
-      <AppTabs />
+      <SettingsNavProvider>
+        <AppGate />
+      </SettingsNavProvider>
     </ThemeProvider>
   );
 }
@@ -48,7 +81,17 @@ function RootLayoutContent() {
 export default function TabLayout() {
   return (
     <ColorSchemeProvider>
-      <RootLayoutContent />
+      <AuthProvider>
+        <RootLayoutContent />
+      </AuthProvider>
     </ColorSchemeProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

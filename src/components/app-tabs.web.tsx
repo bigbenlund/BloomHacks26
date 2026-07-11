@@ -20,7 +20,7 @@ export default function AppTabs() {
             <PhoneTab>Home</PhoneTab>
           </TabTrigger>
           <TabTrigger name="explore" href="/explore" asChild>
-            <PhoneTab>Trips</PhoneTab>
+            <PhoneTab>Favorites</PhoneTab>
           </TabTrigger>
         </PhoneTabBar>
       </TabList>

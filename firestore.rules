@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidUserStations() {
+      let data = request.resource.data;
+      return data.keys().hasOnly(['favoriteIds', 'recentVisits', 'updatedAt'])
+        && data.favoriteIds is list
+        && data.favoriteIds.size() <= 50
+        && data.recentVisits is list
+        && data.recentVisits.size() <= 12
+        && data.updatedAt is number
+        && data.updatedAt > 0;
+    }
+
+    // Personalized favorites + recently visited stations
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create, update: if isOwner(userId) && isValidUserStations();
+      allow delete: if isOwner(userId);
+    }
+
+    // Public charger catalog used by the mobile map
+    match /chargers/{chargerId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

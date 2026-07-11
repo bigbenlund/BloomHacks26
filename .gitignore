@@ -45,3 +45,5 @@ example
 
 # Firebase
 .firebase/
+.firestore-rules-analysis.md
+service-account.json
