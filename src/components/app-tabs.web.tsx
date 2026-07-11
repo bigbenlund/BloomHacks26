@@ -54,8 +54,8 @@ export function CustomTabList(props: TabListProps) {
   return (
     <View {...props} style={styles.tabListContainer}>
       <ThemedView type="backgroundElement" style={styles.innerContainer}>
-        <ThemedText type="smallBold" style={styles.brandText}>
-          Expo Starter
+        <ThemedText type="smallBold" style={[styles.brandText, { color: '#00f0ff' }]}>
+          🛡️ EcoShield SecureRoute
         </ThemedText>
 
         {props.children}
