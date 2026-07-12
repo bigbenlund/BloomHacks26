@@ -223,7 +223,6 @@ export default function UserHomeScreen() {
       latitude: charger.location.lat,
       longitude: charger.location.lng,
     });
-    recordVisit(charger.id);
   }
 
   function findSafeChargingStation() {
@@ -405,7 +404,7 @@ function ChargerSheet({
   onClear: () => void;
 }) {
   const theme = useTheme();
-  const { isFavorite, addFavorite, removeFavorite } = useUserStations();
+  const { isFavorite, addFavorite, removeFavorite, recordVisit } = useUserStations();
   const statusColor = customerStatusColor(charger.status);
   const title = customerChargerTitle(charger);
   const plugsLabel = customerPlugsLabel(charger.plugs);
@@ -429,15 +428,18 @@ function ChargerSheet({
               accessibilityRole="button"
               accessibilityLabel={saved ? 'Remove from favorites' : 'Add to favorites'}
               onPress={() => (saved ? removeFavorite(charger.id) : addFavorite(charger.id))}
-              hitSlop={8}
-              style={styles.starButton}>
+              hitSlop={12}
+              style={({ pressed }) => [
+                styles.starButton,
+                { opacity: pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.92 : 1 }] }
+              ]}>
               <AppIcon
                 name={{
-                  ios: saved ? 'star.fill' : 'star',
-                  android: saved ? 'star' : 'star_border',
-                  web: saved ? 'star' : 'star_border',
+                  ios: saved ? 'heart.fill' : 'heart',
+                  android: saved ? 'favorite' : 'favorite_border',
+                  web: saved ? 'favorite' : 'favorite_border',
                 }}
-                size={18}
+                size={22}
                 tintColor={saved ? Brand.primary : theme.textSecondary}
               />
             </Pressable>
@@ -507,6 +509,7 @@ function ChargerSheet({
             onClear();
             return;
           }
+          recordVisit(charger.id);
           void openDirectionsToStation(charger.location, userLocation);
         }}
       />

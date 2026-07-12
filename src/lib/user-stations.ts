@@ -15,7 +15,7 @@ export type UserStations = {
   recentVisits: RecentVisit[];
 };
 
-const MAX_RECENTS = 12;
+const MAX_RECENTS = 3;
 
 export function emptyUserStations(): UserStations {
   return { favoriteIds: [], recentVisits: [] };

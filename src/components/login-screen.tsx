@@ -114,7 +114,7 @@ export function LoginScreen() {
                       autoCapitalize="words"
                       autoComplete="given-name"
                       autoCorrect={false}
-                      placeholder="Alexa"
+                      placeholder="First name"
                       placeholderTextColor={theme.textSecondary}
                       value={firstName}
                       onChangeText={setFirstName}
@@ -129,7 +129,7 @@ export function LoginScreen() {
                       autoCapitalize="words"
                       autoComplete="family-name"
                       autoCorrect={false}
-                      placeholder="Jimenez"
+                      placeholder="Last name"
                       placeholderTextColor={theme.textSecondary}
                       value={lastName}
                       onChangeText={setLastName}
