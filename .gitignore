@@ -33,7 +33,6 @@ yarn-error.*
 # local env files
 .env
 .env*.local
-nlr_api_key.txt
 
 # typescript
 *.tsbuildinfo
@@ -46,4 +45,5 @@ example
 
 # Firebase
 .firebase/
+.firestore-rules-analysis.md
 service-account.json
