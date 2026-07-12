@@ -1,56 +1,274 @@
-# Welcome to your Expo app 👋
+# 🛡️ EcoShield SecureRoute
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> **Cybersecurity for EV Charging.**
+>
+> EcoShield SecureRoute helps EV drivers find **safe, trusted charging stations** by combining live charger locations with cybersecurity intelligence powered by Google's Gemini AI.
 
-## Get started
+---
 
-1. Install dependencies
+## 🌎 Inspiration
 
-   ```bash
-   npm install
-   ```
+Electric vehicle chargers are becoming increasingly connected devices. Modern charging stations communicate using protocols like ISO 15118, process payments, authenticate vehicles, and connect to cloud infrastructure—making them an emerging cybersecurity target.
 
-2. Start the app
+Today, drivers have no easy way to know whether a charger is trustworthy before plugging in.
 
-   ```bash
-   npx expo start
-   ```
+We wanted security to be as simple as Google Maps:
 
-In the output, you'll find options to open the app in a
+**Open the app → Find a charger → Know if it's safe before you plug in.**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+# 🚗 What It Does
 
-## Get a fresh project
+EcoShield SecureRoute provides drivers with a cybersecurity-aware charging map.
 
-When you're ready, run:
+Users can:
 
-```bash
-npm run reset-project
+- 🗺️ Browse nearby EV charging stations
+- 🟢 View stations labeled as **Verified**
+- 🟡 See stations marked **Use With Care**
+- 🔴 Avoid **Compromised** charging stations
+- 📍 Get navigation directly to safe chargers
+- ❤️ Save favorite charging locations
+- 🔐 View plain-language explanations of charger security risks
+
+Instead of overwhelming users with CVEs or technical security reports, EcoShield converts complex cybersecurity data into simple recommendations drivers can understand instantly.
+
+---
+
+# 🧠 How It Works
+
+The platform combines multiple data sources:
+
+- NREL Alternative Fuel Stations dataset
+- Firebase Firestore
+- Google Maps Platform
+- Google Cloud Run backend
+- Gemini AI vulnerability analysis
+- EVerest charger session logs
+
+### Workflow
+
+```
+EV Charger
+      │
+      ▼
+EVerest Logs
+      │
+      ▼
+Gemini AI analyzes session behavior
+      │
+      ▼
+Risk Classification
+
+SAFE
+CAUTION
+COMPROMISED
+      │
+      ▼
+Stored in Firestore
+      │
+      ▼
+Displayed on Google Maps
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Drivers only see an easy-to-understand security status while the technical analysis happens behind the scenes.
 
-### Other setup steps
+---
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+# 🛠️ Tech Stack
 
-## Learn more
+## Frontend
 
-To learn more about developing your project with Expo, look at the following resources:
+- React Native
+- Expo
+- TypeScript
+- Google Maps API
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Backend
 
-## Join the community
+- Python
+- Flask
+- Google Cloud Run
 
-Join our community of developers creating universal apps.
+## Cloud
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Firebase Authentication
+- Firestore
+- Firebase Hosting
+- Google Cloud
+
+## AI
+
+- Google Gemini
+- Prompt-based vulnerability classification
+- Natural language security summaries
+
+---
+
+# 📱 Features
+
+### Interactive Security Map
+
+Locate nearby charging stations with real-time security indicators.
+
+### AI Security Analysis
+
+Gemini interprets charger session logs and generates human-readable risk assessments.
+
+### Charger Details
+
+Each charger includes:
+
+- Connector types
+- Estimated charging speed
+- Security rating
+- Last security scan
+- Risk explanation
+
+### Authentication
+
+Users can:
+
+- Sign in securely
+- Save favorites
+- Track recent charging locations
+
+---
+
+# 🧩 Architecture
+
+```
+React Native App
+        │
+        ▼
+Firebase Authentication
+        │
+        ▼
+Firestore Database
+        │
+        ▼
+Google Cloud Run Backend
+        │
+        ▼
+Gemini AI
+        │
+        ▼
+EVerest Session Logs
+```
+
+---
+
+# 🚀 Getting Started
+
+## Clone the repository
+
+```bash
+git clone https://github.com/yourusername/EcoShieldSecureRoute.git
+```
+
+## Install dependencies
+
+```bash
+npm install
+```
+
+## Start Expo
+
+```bash
+npx expo start
+```
+
+## Backend
+
+```bash
+cd backend
+
+pip install -r requirements.txt
+
+python app.py
+```
+
+---
+
+# 🔥 Firebase
+
+The project uses:
+
+- Authentication
+- Firestore
+- Hosting
+
+Create a `.env` file with your Firebase configuration:
+
+```env
+EXPO_PUBLIC_FIREBASE_API_KEY=
+EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=
+EXPO_PUBLIC_FIREBASE_PROJECT_ID=
+EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET=
+EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+EXPO_PUBLIC_FIREBASE_APP_ID=
+
+EXPO_PUBLIC_GOOGLE_MAPS_API_KEY=
+```
+
+---
+
+# ☁️ Deployment
+
+Frontend
+
+```bash
+firebase deploy
+```
+
+Backend
+
+```bash
+gcloud run deploy
+```
+
+---
+
+# 🎯 Future Improvements
+
+- Live charger health monitoring
+- Automatic CVE database integration
+- Vehicle-specific charging recommendations
+- Crowdsourced station reports
+- Historical security trends
+- Enterprise fleet dashboard
+- Predictive attack detection
+
+---
+
+# 👥 Team
+
+Built during **BloomHacks 2026**.
+
+### Contributors
+
+- Brayden Coggin
+- Alexa Jimenez
+- Keoni Yandall
+- (Add remaining teammate)
+
+---
+
+# 💡 Why EcoShield?
+
+Most navigation apps answer:
+
+> "Where can I charge?"
+
+EcoShield answers:
+
+> **"Where can I charge safely?"**
+
+By combining cybersecurity, artificial intelligence, and real-world EV infrastructure, EcoShield helps make the growing EV ecosystem more secure for everyone.
+
+---
+
+## 🏆 Built for BloomHacks 2026
+
+Protecting EV drivers one charger at a time.
