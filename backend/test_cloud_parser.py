@@ -47,7 +47,10 @@ class StationMappingTests(unittest.TestCase):
             with patch.object(cloud_parser, "STATION_MAPPING_FILE", mapping_path):
                 mapping = cloud_parser.load_station_mapping()
 
-            self.assertEqual(mapping, {"test.csv": "12345", "other.csv": "67890"})
+            self.assertEqual(mapping, {
+                "test.csv": {"nlr_station_id": "12345", "station_lat": "", "station_lng": "", "station_name": ""},
+                "other.csv": {"nlr_station_id": "67890", "station_lat": "", "station_lng": "", "station_name": ""},
+            })
 
     def test_load_station_mapping_missing_file(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -134,7 +137,7 @@ class BuildChargersTests(unittest.TestCase):
         log_path = self.log_dir / "mapped.csv"
         log_path.write_text("timestamp,source,event\n", encoding="utf-8")
 
-        with patch.object(cloud_parser, "load_station_mapping", return_value={"mapped.csv": "999"}), patch.object(
+        with patch.object(cloud_parser, "load_station_mapping", return_value={"mapped.csv": {"nlr_station_id": "999", "station_lat": "", "station_lng": "", "station_name": ""}}), patch.object(
             cloud_parser, "load_metadata", return_value={
             }), patch.object(cloud_parser, "fetch_orlando_stations", return_value=[]), patch.object(
             cloud_parser, "fetch_station_by_id", side_effect=RuntimeError("not found")), patch.object(
@@ -158,8 +161,8 @@ class BuildChargersTests(unittest.TestCase):
         log_b.write_text("timestamp,source,event\n", encoding="utf-8")
 
         with patch.object(cloud_parser, "load_station_mapping", return_value={
-            "a.csv": "111",
-            "b.csv": "111",
+            "a.csv": {"nlr_station_id": "111", "station_lat": "", "station_lng": "", "station_name": ""},
+            "b.csv": {"nlr_station_id": "111", "station_lat": "", "station_lng": "", "station_name": ""},
         }), patch.object(cloud_parser, "load_metadata", return_value={
         }), patch.object(cloud_parser, "fetch_orlando_stations", return_value=[]), patch.object(
             cloud_parser, "fetch_station_by_id", return_value={

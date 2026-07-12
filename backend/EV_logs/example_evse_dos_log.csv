@@ -1,0 +1,68 @@
+Timestamp,Component,Event,Details
+2026-07-11T14:00:00.000Z,SYS,Session logging started,
+2026-07-11T14:00:00.120Z,EVSE,Session Started: EVConnected,
+2026-07-11T14:00:00.450Z,CAR,V2G SupportedAppProtocolReq,
+2026-07-11T14:00:00.470Z,EVSE,V2G SupportedAppProtocolRes,
+2026-07-11T14:00:01.000Z,CAR,V2G SessionSetupReq,Attempt 1
+2026-07-11T14:00:01.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:01.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:01.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:02.000Z,CAR,V2G SessionSetupReq,Attempt 2
+2026-07-11T14:00:02.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:02.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:02.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:03.000Z,CAR,V2G SessionSetupReq,Attempt 3
+2026-07-11T14:00:03.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:03.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:03.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:04.000Z,CAR,V2G SessionSetupReq,Attempt 4
+2026-07-11T14:00:04.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:04.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:04.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:05.000Z,CAR,V2G SessionSetupReq,Attempt 5
+2026-07-11T14:00:05.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:05.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:05.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:06.000Z,CAR,V2G SessionSetupReq,Attempt 6
+2026-07-11T14:00:06.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:06.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:06.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:07.000Z,CAR,V2G SessionSetupReq,Attempt 7
+2026-07-11T14:00:07.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:07.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:07.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:08.000Z,CAR,V2G SessionSetupReq,Attempt 8
+2026-07-11T14:00:08.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:08.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:08.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:09.000Z,CAR,V2G SessionSetupReq,Attempt 9
+2026-07-11T14:00:09.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:09.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:09.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:10.000Z,CAR,V2G SessionSetupReq,Attempt 10
+2026-07-11T14:00:10.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:10.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:10.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:11.000Z,CAR,V2G SessionSetupReq,Attempt 11
+2026-07-11T14:00:11.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:11.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:11.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:12.000Z,CAR,V2G SessionSetupReq,Attempt 12
+2026-07-11T14:00:12.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:12.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:12.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:13.000Z,CAR,V2G SessionSetupReq,Attempt 13
+2026-07-11T14:00:13.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:13.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:13.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:14.000Z,CAR,V2G SessionSetupReq,Attempt 14
+2026-07-11T14:00:14.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:14.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:14.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:15.000Z,CAR,V2G SessionSetupReq,Attempt 15
+2026-07-11T14:00:15.000Z,EVSE,Connection queue length exceeded,
+2026-07-11T14:00:15.000Z,EVSE,Rate limit triggered,
+2026-07-11T14:00:15.000Z,EVSE,Session Aborted,
+2026-07-11T14:00:16.500Z,EVSE,CPU utilization high (95%),Illustrative only
+2026-07-11T14:00:17.000Z,EVSE,Watchdog restarting communication service,Illustrative only
+2026-07-11T14:00:18.000Z,SYS,Communication module restarted,Service recovered

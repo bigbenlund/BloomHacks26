@@ -108,9 +108,16 @@ def load_metadata() -> Dict[str, Dict[str, str]]:
     }
 
 
-def load_station_mapping() -> Dict[str, str]:
+def load_station_mapping() -> Dict[str, Dict[str, str]]:
     """
     Read explicit static station mappings between CSV filenames and NLR station IDs.
+
+    Returns a dict keyed by log filename.  Each value contains at minimum:
+        nlr_station_id  – the NLR/NREL station ID string
+    And optionally (when the CSV carries fallback columns):
+        station_lat     – fallback latitude string
+        station_lng     – fallback longitude string
+        station_name    – fallback display name string
     """
     if not STATION_MAPPING_FILE.exists():
         print(
@@ -135,7 +142,7 @@ def load_station_mapping() -> Dict[str, str]:
                 + ", ".join(sorted(missing))
             )
 
-        mapping: Dict[str, str] = {}
+        mapping: Dict[str, Dict[str, str]] = {}
         for row_number, row in enumerate(reader, start=2):
             log_file = row.get("log_file", "").strip()
             station_id = row.get("nlr_station_id", "").strip()
@@ -152,7 +159,12 @@ def load_station_mapping() -> Dict[str, str]:
                     f"Duplicate log_file entry in station mapping file: {log_file}"
                 )
 
-            mapping[log_file] = station_id
+            mapping[log_file] = {
+                "nlr_station_id": station_id,
+                "station_lat": row.get("station_lat", "").strip(),
+                "station_lng": row.get("station_lng", "").strip(),
+                "station_name": row.get("station_name", "").strip(),
+            }
 
     return mapping
 
@@ -372,6 +384,70 @@ def rule_based_analyze(
             "Matched terms: " + ", ".join(matched_terms),
         )
 
+    # ── DDoS / Session-Flood Detection ────────────────────────────────────────
+    session_aborts = count(events, "Session Aborted")
+    queue_overflows = count(events, "Connection queue length exceeded")
+    rate_limit_hits = count(events, "Rate limit triggered")
+    cpu_exhausted = contains(events, "CPU utilization high")
+    watchdog_restart = contains(events, "Watchdog restarting")
+
+    if session_aborts >= 5:
+        add_finding(
+            "SESSION_FLOOD_DETECTED",
+            "Abnormal volume of session aborts indicates a denial-of-service flood",
+            "CRITICAL",
+            50,
+            f"{session_aborts} 'Session Aborted' events recorded — consistent with a "
+            "V2G session-layer DoS attack.",
+        )
+    elif session_aborts >= 2:
+        add_finding(
+            "SESSION_ABORT_ELEVATED",
+            "Multiple session aborts detected",
+            "HIGH",
+            25,
+            f"{session_aborts} 'Session Aborted' events recorded.",
+        )
+
+    if queue_overflows >= 3:
+        add_finding(
+            "CONNECTION_QUEUE_OVERFLOW",
+            "Connection queue repeatedly exhausted — charger under flood attack",
+            "CRITICAL",
+            40,
+            f"{queue_overflows} 'Connection queue length exceeded' events recorded.",
+        )
+
+    if rate_limit_hits >= 3:
+        add_finding(
+            "RATE_LIMIT_FLOOD",
+            "Rate limiter triggered repeatedly by high-frequency connection attempts",
+            "HIGH",
+            25,
+            f"{rate_limit_hits} 'Rate limit triggered' events recorded.",
+        )
+
+    if cpu_exhausted:
+        add_finding(
+            "CPU_EXHAUSTION",
+            "Charger CPU reached critical utilization during attack window",
+            "HIGH",
+            20,
+            "Event 'CPU utilization high' detected — resource exhaustion consistent "
+            "with an active DoS attack.",
+        )
+
+    if watchdog_restart:
+        add_finding(
+            "WATCHDOG_FORCED_RESTART",
+            "Communication service forcibly restarted by watchdog due to overload",
+            "HIGH",
+            20,
+            "Event 'Watchdog restarting communication service' detected — charger "
+            "required a hard reset to recover from the attack.",
+        )
+    # ─────────────────────────────────────────────────────────────────────────
+
     session_finished = contains(events, "Session Finished")
     logging_stopped = contains(events, "Session logging stopped")
     transaction_started = contains(events, "Transaction Started")
@@ -520,8 +596,9 @@ def build_chargers() -> List[Dict[str, Any]]:
         raise RuntimeError("No CSV files were found inside logs/.")
 
     station_id_to_logs: Dict[str, List[str]] = {}
-    for log_file, station_id in station_mapping.items():
-        station_id_to_logs.setdefault(station_id, []).append(log_file)
+    for log_file, entry in station_mapping.items():
+        sid = entry["nlr_station_id"]
+        station_id_to_logs.setdefault(sid, []).append(log_file)
 
     for station_id, files in station_id_to_logs.items():
         if len(files) > 1:
@@ -544,7 +621,7 @@ def build_chargers() -> List[Dict[str, Any]]:
         print("Continuing with local metadata fallback.")
         api_stations = []
 
-    mapped_station_ids = {station_id for station_id in station_mapping.values()}
+    mapped_station_ids = {entry["nlr_station_id"] for entry in station_mapping.values()}
     direct_station_cache: Dict[str, Dict[str, Any]] = {}
     for station_id in sorted(mapped_station_ids, key=str):
         try:
@@ -575,16 +652,37 @@ def build_chargers() -> List[Dict[str, Any]]:
             metadata["source"] = "charger_metadata.csv"
 
         api_station = None
-        station_id = station_mapping.get(log_path.name)
-        if station_id:
+        mapping_entry = station_mapping.get(log_path.name)
+        if mapping_entry:
+            station_id = mapping_entry["nlr_station_id"]
             api_station = stations_by_id.get(station_id)
             if api_station is None:
-                print(
-                    f"Warning: Mapped station ID {station_id} for log "
-                    f"{log_path.name} was not found in NLR lookup results. "
-                    "Using local metadata fallback."
-                )
-            else:
+                # Live API lookup failed — try the static fallback coordinates
+                # embedded in charger_station_map.csv before giving up.
+                fallback_lat = mapping_entry.get("station_lat", "")
+                fallback_lng = mapping_entry.get("station_lng", "")
+                fallback_name = mapping_entry.get("station_name", "")
+                if fallback_lat and fallback_lng:
+                    api_station = {
+                        "id": int(station_id),
+                        "name": fallback_name or f"Station {station_id}",
+                        "location": {
+                            "lat": float(fallback_lat),
+                            "lng": float(fallback_lng),
+                        },
+                    }
+                    print(
+                        f"Info: Using static coordinate fallback for station ID "
+                        f"{station_id} ({log_path.name})."
+                    )
+                else:
+                    print(
+                        f"Warning: Mapped station ID {station_id} for log "
+                        f"{log_path.name} was not found in NLR lookup results "
+                        "and has no static fallback coordinates. "
+                        "Using local metadata fallback."
+                    )
+            if api_station is not None:
                 processed_station_ids.add(str(api_station["id"]))
         else:
             print(
