@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { SymbolView } from 'expo-symbols';
+import { AppIcon } from '@/components/ui/themed-icon';
 import { collection, onSnapshot } from 'firebase/firestore';
 
 import { db } from '@/config/firebase';
@@ -431,7 +431,7 @@ function ChargerSheet({
               onPress={() => (saved ? removeFavorite(charger.id) : addFavorite(charger.id))}
               hitSlop={8}
               style={styles.starButton}>
-              <SymbolView
+              <AppIcon
                 name={{
                   ios: saved ? 'star.fill' : 'star',
                   android: saved ? 'star' : 'star_border',

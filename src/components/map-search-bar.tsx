@@ -1,4 +1,4 @@
-import { SymbolView } from 'expo-symbols';
+import { AppIcon } from '@/components/ui/themed-icon';
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
@@ -22,7 +22,7 @@ export function MapSearchBar({
 
   return (
     <View style={[styles.wrapper, Shadow, { backgroundColor: theme.card }]}>
-      <SymbolView
+      <AppIcon
         name={{ ios: 'magnifyingglass', android: 'search', web: 'search' }}
         size={20}
         tintColor={theme.textSecondary}
@@ -43,7 +43,7 @@ export function MapSearchBar({
           accessibilityLabel="Clear search"
           onPress={() => onChangeText('')}
           hitSlop={8}>
-          <SymbolView
+          <AppIcon
             name={{ ios: 'xmark.circle.fill', android: 'close', web: 'close' }}
             size={18}
             tintColor={theme.textSecondary}

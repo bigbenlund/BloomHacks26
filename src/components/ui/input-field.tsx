@@ -1,4 +1,4 @@
-import { SymbolView } from 'expo-symbols';
+import { AppIcon } from '@/components/ui/themed-icon';
 import { Pressable, StyleSheet, TextInput, View, type TextInputProps } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
@@ -21,7 +21,7 @@ export function InputField({ label, icon = 'search', onPress, style, ...props }:
   const theme = useTheme();
   const content = (
     <View style={[styles.container, { backgroundColor: theme.backgroundElement, borderColor: theme.border }]}>
-      <SymbolView name={iconNames[icon]} size={20} tintColor={theme.textSecondary} />
+      <AppIcon name={iconNames[icon]} size={20} tintColor={theme.textSecondary} />
       <View style={styles.inputWrapper}>
         {label && (
           <ThemedText type="caption" themeColor="textSecondary">

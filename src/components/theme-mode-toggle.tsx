@@ -1,4 +1,4 @@
-import { SymbolView } from 'expo-symbols';
+import { AppIcon } from '@/components/ui/themed-icon';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
@@ -50,7 +50,7 @@ export function ThemeModeToggle({ compact = false }: ThemeModeToggleProps) {
               isSelected && styles.optionSelected,
               pressed && styles.pressed,
             ]}>
-            <SymbolView
+            <AppIcon
               name={iconNames[option.icon]}
               size={compact ? 14 : 16}
               tintColor={isSelected ? theme.text : theme.textSecondary}

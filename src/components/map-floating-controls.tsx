@@ -1,4 +1,4 @@
-import { SymbolView } from 'expo-symbols';
+import { AppIcon } from '@/components/ui/themed-icon';
 import { Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 
 import { Radius, Shadow, Spacing } from '@/constants/theme';
@@ -23,7 +23,7 @@ export function MapFloatingControls({ onRecenter, style }: MapFloatingControlsPr
           Shadow,
           { backgroundColor: theme.card, opacity: pressed ? 0.85 : 1 },
         ]}>
-        <SymbolView
+        <AppIcon
           name={{ ios: 'location.fill', android: 'my_location', web: 'my_location' }}
           size={22}
           tintColor="#4285F4"

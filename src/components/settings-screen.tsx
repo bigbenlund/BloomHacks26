@@ -1,4 +1,4 @@
-import { SymbolView } from 'expo-symbols';
+import { AppIcon } from '@/components/ui/themed-icon';
 import { useEffect, useState, type ReactNode } from 'react';
 import {
   ActivityIndicator,
@@ -46,7 +46,7 @@ function SettingsDropdown({
         <ThemedText type="subtitle" style={styles.dropdownTitle}>
           {title}
         </ThemedText>
-        <SymbolView
+        <AppIcon
           name={{
             ios: open ? 'chevron.up' : 'chevron.down',
             android: open ? 'expand_less' : 'expand_more',

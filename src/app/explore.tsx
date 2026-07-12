@@ -1,4 +1,4 @@
-import { SymbolView } from 'expo-symbols';
+import { AppIcon } from '@/components/ui/themed-icon';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -97,7 +97,7 @@ export default function FavoritesScreen() {
                         onPress={() => removeFavorite(station.id)}
                         hitSlop={8}
                         style={[styles.iconButton, { backgroundColor: theme.backgroundElement }]}>
-                        <SymbolView
+                        <AppIcon
                           name={{ ios: 'heart.fill', android: 'favorite', web: 'favorite' }}
                           size={18}
                           tintColor={Brand.primary}
@@ -150,7 +150,7 @@ export default function FavoritesScreen() {
                                 : theme.backgroundElement,
                             },
                           ]}>
-                          <SymbolView
+                          <AppIcon
                             name={{
                               ios: saved ? 'heart.fill' : 'heart',
                               android: saved ? 'favorite' : 'favorite_border',
