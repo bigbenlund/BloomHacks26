@@ -145,20 +145,65 @@ export default function UserHomeScreen() {
     }
   }, []);
 
+  // State for map filtering ('ALL' | 'SAFE' | 'CAUTION' | 'COMPROMISED')
+  const [statusFilter, setStatusFilter] = useState<'ALL' | 'SAFE' | 'CAUTION' | 'COMPROMISED'>('ALL');
+  const [hasCenteredOnDb, setHasCenteredOnDb] = useState(false);
+
+  // Center on the live database cluster if available
+  const dbCenter = useMemo(() => {
+    if (dbChargers.length === 0) return null;
+    let totalLat = 0;
+    let totalLng = 0;
+    dbChargers.forEach((c) => {
+      totalLat += c.location.lat;
+      totalLng += c.location.lng;
+    });
+    return {
+      latitude: totalLat / dbChargers.length,
+      longitude: totalLng / dbChargers.length,
+    };
+  }, [dbChargers]);
+
   // Demo stations are remapped around the user (or Santa Monica until location arrives)
   const chargerAnchor = userLocation ?? DEFAULT_MAP_CENTER;
 
   const chargers = useMemo(() => {
-    const sourceData = dbChargers.length > 0 ? dbChargers : chargerData;
-    return chargersNearLocation(chargerAnchor, sourceData);
-  }, [chargerAnchor.latitude, chargerAnchor.longitude, dbChargers]);
+    // Determine the baseline raw station array
+    let rawList = dbChargers;
+    if (dbChargers.length === 0) {
+      // Fallback: use mock Santa Monica chargers and remap them to the user anchor
+      rawList = chargersNearLocation(chargerAnchor, chargerData);
+    }
 
+    // Apply safety status filters dynamically
+    if (statusFilter !== 'ALL') {
+      return rawList.filter((c) => c.status === statusFilter);
+    }
+    return rawList;
+  }, [chargerAnchor.latitude, chargerAnchor.longitude, dbChargers, statusFilter]);
+
+  // Auto-center map on user location if available
   useEffect(() => {
     if (userLocation && !hasCenteredOnUser) {
       setMapCenter(userLocation);
       setHasCenteredOnUser(true);
     }
   }, [userLocation, hasCenteredOnUser]);
+
+  // Fallback: auto-center on database cluster (Orlando) if user has no GPS permission/location
+  useEffect(() => {
+    if (dbCenter && !hasCenteredOnDb && !userLocation) {
+      setMapCenter(dbCenter);
+      setHasCenteredOnDb(true);
+    }
+  }, [dbCenter, hasCenteredOnDb, userLocation]);
+
+  const distanceToDb = useMemo(() => {
+    if (!dbCenter || !userLocation) return 0;
+    return distanceMeters(userLocation, { lat: dbCenter.latitude, lng: dbCenter.longitude });
+  }, [dbCenter, userLocation]);
+
+  const showFocusDbButton = dbChargers.length > 0 && distanceToDb > 50000;
 
   function handleRecenter() {
     refresh();
@@ -252,11 +297,46 @@ export default function UserHomeScreen() {
         </Pressable>
       )}
 
-      <View style={[styles.legend, Shadow, { backgroundColor: theme.card, top: insets.top + 56 }]}>
-        <LegendDot color="#00B89C" label="Verified Safe" />
-        <LegendDot color="#F5A623" label="Caution" />
-        <LegendDot color="#FF3B30" label="Compromised" />
+      <View style={[styles.legend, Shadow, { backgroundColor: theme.card, top: insets.top + 56, alignItems: 'center', gap: Spacing.two }]}>
+        <LegendDot
+          color="#00B89C"
+          label="Verified Safe"
+          active={statusFilter === 'SAFE'}
+          onPress={() => setStatusFilter((prev) => (prev === 'SAFE' ? 'ALL' : 'SAFE'))}
+        />
+        <LegendDot
+          color="#F5A623"
+          label="Caution"
+          active={statusFilter === 'CAUTION'}
+          onPress={() => setStatusFilter((prev) => (prev === 'CAUTION' ? 'ALL' : 'CAUTION'))}
+        />
+        <LegendDot
+          color="#FF3B30"
+          label="Compromised"
+          active={statusFilter === 'COMPROMISED'}
+          onPress={() => setStatusFilter((prev) => (prev === 'COMPROMISED' ? 'ALL' : 'COMPROMISED'))}
+        />
       </View>
+
+      {showFocusDbButton && dbCenter && (
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => {
+            setMapCenter({
+              latitude: dbCenter.latitude,
+              longitude: dbCenter.longitude,
+            });
+          }}
+          style={[
+            styles.focusHubButton,
+            Shadow,
+            { backgroundColor: theme.card, top: insets.top + 104 },
+          ]}>
+          <ThemedText type="caption" style={{ color: Brand.primary, fontWeight: 'bold' }}>
+            📍 Focus Florida Grid ({dbChargers.length} nodes)
+          </ThemedText>
+        </Pressable>
+      )}
 
       <MapFloatingControls
         onRecenter={handleRecenter}
@@ -434,12 +514,41 @@ function ChargerSheet({
   );
 }
 
-function LegendDot({ color, label }: { color: string; label: string }) {
+function LegendDot({
+  color,
+  label,
+  active,
+  onPress,
+}: {
+  color: string;
+  label: string;
+  active: boolean;
+  onPress: () => void;
+}) {
   return (
-    <View style={styles.legendItem}>
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      style={[
+        styles.legendItem,
+        {
+          opacity: active ? 1 : 0.65,
+          backgroundColor: active ? `${color}18` : 'transparent',
+          paddingHorizontal: Spacing.two,
+          paddingVertical: Spacing.one,
+          borderRadius: Radius.pill,
+        },
+      ]}>
       <View style={[styles.legendDot, { backgroundColor: color }]} />
-      <ThemedText type="caption">{label}</ThemedText>
-    </View>
+      <ThemedText
+        type="caption"
+        style={{
+          fontWeight: active ? 'bold' : 'normal',
+          color: active ? color : undefined,
+        }}>
+        {label}
+      </ThemedText>
+    </Pressable>
   );
 }
 
@@ -567,5 +676,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: 'rgba(255,255,255,0.1)',
     paddingBottom: Spacing.one,
+  },
+  focusHubButton: {
+    position: 'absolute',
+    left: Spacing.three,
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.two,
+    borderRadius: Radius.pill,
+    zIndex: 15,
   },
 });
