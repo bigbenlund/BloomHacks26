@@ -251,7 +251,7 @@ Built during **BloomHacks 2026**.
 - Brayden Coggin
 - Alexa Jimenez
 - Keoni Yandall
-- (Add remaining teammate)
+- Brandon Enlund
 
 ---
 
