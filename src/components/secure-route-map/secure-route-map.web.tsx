@@ -60,7 +60,7 @@ export function SecureRouteMap({
           gestureHandling="greedy"
           disableDefaultUI
           clickableIcons={false}
-          onCameraChanged={(event) => {
+          onCameraChanged={(event: any) => {
             setCameraCenter(event.detail.center);
             setZoom(event.detail.zoom);
           }}
