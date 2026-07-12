@@ -1,11 +1,14 @@
 import { AppIcon } from '@/components/ui/themed-icon';
+import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { collection, onSnapshot } from 'firebase/firestore';
 
+import { db } from '@/config/firebase-app';
 import { ThemedText } from '@/components/themed-text';
 import { ThemeModeToggle } from '@/components/theme-mode-toggle';
 import { Card } from '@/components/ui/card';
-import { chargerData } from '@/constants/chargers';
+import { chargerData, type Charger } from '@/constants/chargers';
 import { Brand, BottomTabInset, MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { useUserStations } from '@/hooks/use-user-stations';
 import { useTheme } from '@/hooks/use-theme';
@@ -19,8 +22,8 @@ type StationRow = {
   visitedLabel?: string;
 };
 
-function stationFromId(id: string, visitedAt?: number): StationRow | null {
-  const charger = chargerData.find((item) => item.id === id);
+function stationFromId(id: string, allChargers: Charger[], visitedAt?: number): StationRow | null {
+  const charger = allChargers.find((item) => item.id === id);
   if (!charger) {
     return null;
   }
@@ -36,16 +39,83 @@ function stationFromId(id: string, visitedAt?: number): StationRow | null {
 export default function FavoritesScreen() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const { favoriteIds, recentVisits, isFavorite, addFavorite, removeFavorite, ready } =
+  const { favoriteIds, recentVisits, isFavorite, addFavorite, removeFavorite, ready: stationsReady } =
     useUserStations();
 
-  const favorites = favoriteIds
-    .map((id) => stationFromId(id))
-    .filter((item): item is StationRow => item !== null);
+  const [cloudChargers, setCloudChargers] = useState<Charger[]>([]);
+  const [cloudReady, setCloudReady] = useState(false);
 
-  const recents = recentVisits
-    .map((visit) => stationFromId(visit.chargerId, visit.visitedAt))
-    .filter((item): item is StationRow => item !== null);
+  // Subscribe to live chargers list in Firestore so dynamically loaded stations resolve correctly
+  useEffect(() => {
+    let cancelled = false;
+    try {
+      const chargersCol = collection(db, 'chargers');
+      const unsubscribe = onSnapshot(chargersCol, (snapshot) => {
+        if (cancelled) return;
+        if (!snapshot.empty) {
+          const list: Charger[] = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            list.push({
+              id: doc.id,
+              name: data.name || 'Unnamed Station',
+              location: data.location || { lat: 34.0094, lng: -118.4973 },
+              status: (['SAFE', 'CAUTION', 'COMPROMISED'].includes(data.status)
+                ? data.status
+                : 'SAFE') as Charger['status'],
+              risk: typeof data.risk === 'number' ? data.risk : 0,
+              recommendation: data.recommendation || 'No advisories',
+              findings: Array.isArray(data.findings) ? data.findings : [],
+              driver_summary: data.driver_summary || data.recommendation || 'This station is fully verified secure.',
+              firmware: data.firmware || 'unknown',
+              log_file: data.log_file || 'simulated',
+              telemetry: data.telemetry,
+              power: data.power || (data.telemetry && data.telemetry.event_count ? `Log Events: ${data.telemetry.event_count}` : '150 kW DC Fast'),
+              plugs: Array.isArray(data.plugs) ? data.plugs : ['CCS2', 'NACS'],
+              price: data.price || '$0.30/kWh',
+              address: data.address || `${data.name || 'Orlando Node'} - Orlando Grid Node`,
+            });
+          });
+          setCloudChargers(list);
+        }
+        setCloudReady(true);
+      }, (err) => {
+        console.error("Firestore loading failure inside explore:", err);
+        setCloudReady(true);
+      });
+      return () => {
+        cancelled = true;
+        unsubscribe();
+      };
+    } catch (err) {
+      console.error("Failed to subscribe to Firestore in explore:", err);
+      setCloudReady(true);
+    }
+  }, []);
+
+  const allChargers = useMemo(() => {
+    const combined = [...cloudChargers];
+    chargerData.forEach((staticC) => {
+      if (!combined.some((c) => c.id === staticC.id)) {
+        combined.push(staticC);
+      }
+    });
+    return combined;
+  }, [cloudChargers]);
+
+  const favorites = useMemo(() => {
+    return favoriteIds
+      .map((id) => stationFromId(id, allChargers))
+      .filter((item): item is StationRow => item !== null);
+  }, [favoriteIds, allChargers]);
+
+  const recents = useMemo(() => {
+    return recentVisits
+      .map((visit) => stationFromId(visit.chargerId, allChargers, visit.visitedAt))
+      .filter((item): item is StationRow => item !== null);
+  }, [recentVisits, allChargers]);
+
+  const ready = stationsReady && cloudReady;
 
   return (
     <ScrollView
