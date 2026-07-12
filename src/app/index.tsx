@@ -22,6 +22,7 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useTheme } from '@/hooks/use-theme';
 import { useUserLocation } from '@/hooks/use-user-location';
 import { useUserStations } from '@/hooks/use-user-stations';
+import { chargerFromDoc } from '@/lib/charger-doc';
 import { chargersNearLocation } from '@/lib/chargers-on-map';
 import {
   customerChargeTimeEstimate,
@@ -58,7 +59,6 @@ export default function UserHomeScreen() {
   const insets = useSafeAreaInsets();
   const { user } = useAuth();
   const { openSettings } = useSettingsNav();
-  const { recordVisit } = useUserStations();
   const { location: userLocation, error: locationError, refresh, requestLocationAccess } =
     useUserLocation();
   const greeting = useMemo(
@@ -106,42 +106,17 @@ export default function UserHomeScreen() {
     try {
       const chargersCol = collection(db, 'chargers');
       const unsubscribe = onSnapshot(chargersCol, (snapshot) => {
-        if (!snapshot.empty) {
-          const list: Charger[] = [];
-          snapshot.forEach((doc) => {
-            const data = doc.data();
-            list.push({
-              id: doc.id,
-              name: data.name || 'Unnamed Station',
-              location: data.location || { lat: 34.0094, lng: -118.4973 },
-              status: (['SAFE', 'CAUTION', 'COMPROMISED'].includes(data.status)
-                ? data.status
-                : 'SAFE') as Charger['status'],
-              risk: typeof data.risk === 'number' ? data.risk : 0,
-              recommendation: data.recommendation || 'No advisories',
-              findings: Array.isArray(data.findings) ? data.findings : [],
-              driver_summary: data.driver_summary || data.recommendation || 'This station is fully verified secure.',
-              firmware: data.firmware || 'unknown',
-              log_file: data.log_file || 'simulated',
-              telemetry: data.telemetry,
-              power: data.power || (data.telemetry && data.telemetry.event_count ? `Log Events: ${data.telemetry.event_count}` : '150 kW DC Fast'),
-              plugs: Array.isArray(data.plugs) ? data.plugs : ['CCS2', 'NACS'],
-              price: data.price || '$0.30/kWh',
-              address: data.address || `${data.name || 'Orlando Node'} - Orlando Grid Node`,
-            });
-          });
-          setDbChargers(list);
-        } else {
-          setDbChargers(chargerData);
-        }
+        // Empty cloud registry → leave dbChargers empty so the demo catalog
+        // is remapped around the user's location instead.
+        setDbChargers(snapshot.docs.map((doc) => chargerFromDoc(doc.id, doc.data())));
       }, (error) => {
-        console.error("Firestore subscription error, falling back:", error);
-        setDbChargers(chargerData);
+        console.error('Firestore subscription error, falling back to demo catalog:', error);
+        setDbChargers([]);
       });
       return () => unsubscribe();
     } catch (err) {
-      console.error("Failed to set up Firestore snapshot listener:", err);
-      setDbChargers(chargerData);
+      console.error('Failed to set up Firestore snapshot listener:', err);
+      setDbChargers([]);
     }
   }, []);
 
@@ -167,20 +142,21 @@ export default function UserHomeScreen() {
   // Demo stations are remapped around the user (or Santa Monica until location arrives)
   const chargerAnchor = userLocation ?? DEFAULT_MAP_CENTER;
 
-  const chargers = useMemo(() => {
-    // Determine the baseline raw station array
-    let rawList = dbChargers;
-    if (dbChargers.length === 0) {
-      // Fallback: use mock Santa Monica chargers and remap them to the user anchor
-      rawList = chargersNearLocation(chargerAnchor, chargerData);
+  // Full station list: live cloud registry, or the demo catalog remapped near the user
+  const allStations = useMemo(() => {
+    if (dbChargers.length > 0) {
+      return dbChargers;
     }
+    return chargersNearLocation(chargerAnchor, chargerData);
+  }, [chargerAnchor.latitude, chargerAnchor.longitude, dbChargers]);
 
-    // Apply safety status filters dynamically
-    if (statusFilter !== 'ALL') {
-      return rawList.filter((c) => c.status === statusFilter);
+  // Stations shown on the map after the legend safety filter
+  const chargers = useMemo(() => {
+    if (statusFilter === 'ALL') {
+      return allStations;
     }
-    return rawList;
-  }, [chargerAnchor.latitude, chargerAnchor.longitude, dbChargers, statusFilter]);
+    return allStations.filter((c) => c.status === statusFilter);
+  }, [allStations, statusFilter]);
 
   // Auto-center map on user location if available
   useEffect(() => {
@@ -225,12 +201,14 @@ export default function UserHomeScreen() {
     });
   }
 
-  function findSafeChargingStation() {
+  function findSafeChargingStation(excludeId?: string) {
     setIsSearching(true);
     const origin = userLocation ?? mapCenter;
 
-    // Filter to only find SAFE ones
-    const safeChargers = chargers.filter((c) => c.status === 'SAFE');
+    // Search every known station (not just the filtered map view) for SAFE ones
+    const safeChargers = allStations.filter(
+      (c) => c.status === 'SAFE' && c.id !== excludeId,
+    );
     const nearest = [...safeChargers].sort(
       (a, b) => distanceMeters(origin, a.location) - distanceMeters(origin, b.location),
     )[0];
@@ -359,10 +337,8 @@ export default function UserHomeScreen() {
               <ChargerSheet
                 charger={selectedCharger}
                 userLocation={userLocation}
-                onClear={() => {
-                  setSelectedCharger(null);
-                  setDestination(null);
-                }}
+                isSearching={isSearching}
+                onFindAnother={() => findSafeChargingStation(selectedCharger.id)}
               />
             ) : (
               <>
@@ -378,8 +354,8 @@ export default function UserHomeScreen() {
 
                 <Button
                   label={isSearching ? 'Finding a station…' : 'Find a safe charging station'}
-                  onPress={findSafeChargingStation}
-                  disabled={isSearching || chargers.length === 0}
+                  onPress={() => findSafeChargingStation()}
+                  disabled={isSearching || allStations.length === 0}
                 />
 
                 <ThemedText type="caption" themeColor="textSecondary" style={styles.hint}>
@@ -397,11 +373,13 @@ export default function UserHomeScreen() {
 function ChargerSheet({
   charger,
   userLocation,
-  onClear,
+  isSearching,
+  onFindAnother,
 }: {
   charger: Charger;
   userLocation: MapCoordinate | null;
-  onClear: () => void;
+  isSearching: boolean;
+  onFindAnother: () => void;
 }) {
   const theme = useTheme();
   const { isFavorite, addFavorite, removeFavorite, recordVisit } = useUserStations();
@@ -502,17 +480,38 @@ function ChargerSheet({
       </View>
 
       <Button
-        label={charger.status === 'SAFE' ? 'Get directions' : 'Find another station'}
+        label={
+          charger.status === 'SAFE'
+            ? 'Get directions'
+            : isSearching
+              ? 'Finding a safer station…'
+              : 'Find a verified station nearby'
+        }
         variant={charger.status === 'SAFE' ? 'primary' : 'secondary'}
+        disabled={charger.status !== 'SAFE' && isSearching}
         onPress={() => {
           if (charger.status !== 'SAFE') {
-            onClear();
+            onFindAnother();
             return;
           }
           recordVisit(charger.id);
           void openDirectionsToStation(charger.location, userLocation);
         }}
       />
+
+      {charger.status === 'CAUTION' && (
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => {
+            recordVisit(charger.id);
+            void openDirectionsToStation(charger.location, userLocation);
+          }}
+          hitSlop={8}>
+          <ThemedText type="caption" themeColor="textSecondary" style={styles.hint}>
+            I understand the risk — get directions anyway
+          </ThemedText>
+        </Pressable>
+      )}
     </>
   );
 }
