@@ -12,6 +12,7 @@ import { chargerData, type Charger } from '@/constants/chargers';
 import { Brand, BottomTabInset, MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { useUserStations } from '@/hooks/use-user-stations';
 import { useTheme } from '@/hooks/use-theme';
+import { chargerFromDoc } from '@/lib/charger-doc';
 import { customerChargerTitle, customerStatusLabel } from '@/lib/customer-copy';
 import { formatVisitedLabel } from '@/lib/user-stations';
 
@@ -53,30 +54,7 @@ export default function FavoritesScreen() {
       const unsubscribe = onSnapshot(chargersCol, (snapshot) => {
         if (cancelled) return;
         if (!snapshot.empty) {
-          const list: Charger[] = [];
-          snapshot.forEach((doc) => {
-            const data = doc.data();
-            list.push({
-              id: doc.id,
-              name: data.name || 'Unnamed Station',
-              location: data.location || { lat: 34.0094, lng: -118.4973 },
-              status: (['SAFE', 'CAUTION', 'COMPROMISED'].includes(data.status)
-                ? data.status
-                : 'SAFE') as Charger['status'],
-              risk: typeof data.risk === 'number' ? data.risk : 0,
-              recommendation: data.recommendation || 'No advisories',
-              findings: Array.isArray(data.findings) ? data.findings : [],
-              driver_summary: data.driver_summary || data.recommendation || 'This station is fully verified secure.',
-              firmware: data.firmware || 'unknown',
-              log_file: data.log_file || 'simulated',
-              telemetry: data.telemetry,
-              power: data.power || (data.telemetry && data.telemetry.event_count ? `Log Events: ${data.telemetry.event_count}` : '150 kW DC Fast'),
-              plugs: Array.isArray(data.plugs) ? data.plugs : ['CCS2', 'NACS'],
-              price: data.price || '$0.30/kWh',
-              address: data.address || `${data.name || 'Orlando Node'} - Orlando Grid Node`,
-            });
-          });
-          setCloudChargers(list);
+          setCloudChargers(snapshot.docs.map((doc) => chargerFromDoc(doc.id, doc.data())));
         }
         setCloudReady(true);
       }, (err) => {
@@ -185,7 +163,7 @@ export default function FavoritesScreen() {
             {recents.length === 0 ? (
               <Card style={styles.emptyCard}>
                 <ThemedText type="small" themeColor="textSecondary">
-                  Stations you open on the map will show up here for your account.
+                  Stations you get directions to will show up here for your account.
                 </ThemedText>
               </Card>
             ) : (
