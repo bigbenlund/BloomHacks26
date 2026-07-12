@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import { SymbolView } from 'expo-symbols';
+import { useEffect, useState, type ReactNode } from 'react';
 import {
   ActivityIndicator,
+  Alert,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -9,6 +11,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ThemedText } from '@/components/themed-text';
@@ -19,6 +22,48 @@ import { Brand, BottomTabInset, MaxContentWidth, Radius, Spacing } from '@/const
 import { useAuth } from '@/contexts/auth-context';
 import { useSettingsNav } from '@/contexts/settings-nav-context';
 import { useTheme } from '@/hooks/use-theme';
+import { ABOUT_ECOSHIELD } from '@/lib/customer-copy';
+
+function SettingsDropdown({
+  title,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  children: ReactNode;
+  defaultOpen?: boolean;
+}) {
+  const theme = useTheme();
+  const [open, setOpen] = useState(defaultOpen);
+
+  return (
+    <Card style={styles.section}>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityState={{ expanded: open }}
+        onPress={() => setOpen((value) => !value)}
+        style={styles.dropdownHeader}>
+        <ThemedText type="subtitle" style={styles.dropdownTitle}>
+          {title}
+        </ThemedText>
+        <SymbolView
+          name={{
+            ios: open ? 'chevron.up' : 'chevron.down',
+            android: open ? 'expand_less' : 'expand_more',
+            web: open ? 'expand_less' : 'expand_more',
+          }}
+          size={20}
+          tintColor={theme.textSecondary}
+        />
+      </Pressable>
+      {open ? (
+        <Animated.View entering={FadeIn.duration(180)} style={styles.dropdownBody}>
+          {children}
+        </Animated.View>
+      ) : null}
+    </Card>
+  );
+}
 
 /** Account settings — profile details, password, and log out. */
 export function SettingsScreen() {
@@ -40,6 +85,7 @@ export function SettingsScreen() {
   const [savingPassword, setSavingPassword] = useState(false);
   const [passwordMessage, setPasswordMessage] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [reportSent, setReportSent] = useState(false);
 
   useEffect(() => {
     setFirst(firstName ?? '');
@@ -97,6 +143,31 @@ export function SettingsScreen() {
   async function handleSignOut() {
     closeSettings();
     await signOut();
+  }
+
+  function handleReportProblem() {
+    const message =
+      'Tell us if a station looks down, unsafe, or different from what EcoShield shows. Reports help keep the locator accurate for everyone.';
+
+    if (Platform.OS === 'web') {
+      const confirmed = window.confirm(`${message}\n\nSubmit a report?`);
+      if (confirmed) {
+        setReportSent(true);
+      }
+      return;
+    }
+
+    Alert.alert('Report a problem', message, [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Station looks down',
+        onPress: () => setReportSent(true),
+      },
+      {
+        text: 'Something feels off',
+        onPress: () => setReportSent(true),
+      },
+    ]);
   }
 
   return (
@@ -292,7 +363,46 @@ export function SettingsScreen() {
           {(savingNames || savingPassword) && (
             <ActivityIndicator color={Brand.primary} style={styles.spinner} />
           )}
+
+          {reportSent ? (
+            <ThemedText type="small" style={styles.success}>
+              Thanks — we got your report and will take a look.
+            </ThemedText>
+          ) : (
+            <Button
+              label="Report a problem"
+              variant="secondary"
+              size="md"
+              onPress={handleReportProblem}
+            />
+          )}
         </Card>
+
+        <SettingsDropdown title="About EcoShield">
+          {ABOUT_ECOSHIELD.map((line) => (
+            <ThemedText key={line} type="small" themeColor="textSecondary">
+              {line}
+            </ThemedText>
+          ))}
+        </SettingsDropdown>
+
+        <SettingsDropdown title="For fleets & operators">
+          <ThemedText type="small" themeColor="textSecondary">
+            EcoShield Enterprise includes operator dashboards and monitoring tools. That version isn’t
+            available in the customer app.
+          </ThemedText>
+          <View
+            accessibilityRole="text"
+            accessibilityLabel="EcoShield Enterprise — available separately for operators"
+            style={[styles.enterpriseBadge, { backgroundColor: theme.backgroundElement }]}>
+            <ThemedText type="smallBold" style={styles.enterpriseLabel}>
+              EcoShield Enterprise
+            </ThemedText>
+            <ThemedText type="caption" themeColor="textSecondary">
+              Operator access only
+            </ThemedText>
+          </View>
+        </SettingsDropdown>
 
         <Button
           label="Log out"
@@ -332,6 +442,28 @@ const styles = StyleSheet.create({
   },
   section: {
     gap: Spacing.three,
+  },
+  dropdownHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: Spacing.three,
+  },
+  dropdownTitle: {
+    flex: 1,
+  },
+  dropdownBody: {
+    gap: Spacing.three,
+  },
+  enterpriseBadge: {
+    borderRadius: Radius.md,
+    paddingVertical: Spacing.three,
+    paddingHorizontal: Spacing.three,
+    gap: Spacing.half,
+    opacity: 0.9,
+  },
+  enterpriseLabel: {
+    color: Brand.purple,
   },
   nameRow: {
     flexDirection: 'row',

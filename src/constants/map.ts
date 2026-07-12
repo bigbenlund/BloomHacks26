@@ -1,6 +1,7 @@
 export const DEFAULT_MAP_CENTER = {
-  latitude: 37.7879,
-  longitude: -122.4075,
+  // Fallback only until we have the signed-in user's location
+  latitude: 34.0194,
+  longitude: -118.4912,
 } as const;
 
 export const DEFAULT_MAP_ZOOM = 14;

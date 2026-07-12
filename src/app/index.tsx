@@ -1,31 +1,38 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SymbolView } from 'expo-symbols';
 
 import { BottomSheet } from '@/components/bottom-sheet';
 import { BrandLogo } from '@/components/brand-logo';
 import { MapFloatingControls } from '@/components/map-floating-controls';
 import { SecureRouteMap } from '@/components/secure-route-map/secure-route-map';
 import type { MapCoordinate } from '@/components/secure-route-map/types';
-import { ThemedText } from '@/components/themed-text';
 import { ThemeModeToggle } from '@/components/theme-mode-toggle';
+import { ThemedText } from '@/components/themed-text';
 import { Button } from '@/components/ui/button';
 import { chargerData, type Charger } from '@/constants/chargers';
 import { DEFAULT_MAP_CENTER } from '@/constants/map';
-import { BottomTabInset, MaxContentWidth, Radius, Shadow, Spacing } from '@/constants/theme';
+import { BottomTabInset, Brand, MaxContentWidth, Radius, Shadow, Spacing } from '@/constants/theme';
 import { useAuth } from '@/contexts/auth-context';
 import { useSettingsNav } from '@/contexts/settings-nav-context';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useTheme } from '@/hooks/use-theme';
 import { useUserLocation } from '@/hooks/use-user-location';
 import { useUserStations } from '@/hooks/use-user-stations';
 import { chargersNearLocation } from '@/lib/chargers-on-map';
 import {
+  customerChargeTimeEstimate,
   customerChargerSummary,
   customerChargerTitle,
+  customerLastCheckedLabel,
+  customerPlugsLabel,
+  customerPowerLabel,
   customerStatusColor,
   customerStatusLabel,
 } from '@/lib/customer-copy';
 import { buildHomeGreeting } from '@/lib/home-greetings';
+import { openDirectionsToStation } from '@/lib/open-directions';
 
 function distanceMeters(a: MapCoordinate, b: { lat: number; lng: number }) {
   const toRad = (deg: number) => (deg * Math.PI) / 180;
@@ -45,14 +52,33 @@ function distanceMeters(a: MapCoordinate, b: { lat: number; lng: number }) {
  */
 export default function UserHomeScreen() {
   const theme = useTheme();
+  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const { user } = useAuth();
   const { openSettings } = useSettingsNav();
   const { recordVisit } = useUserStations();
-  const { location: userLocation, error: locationError, refresh } = useUserLocation();
+  const { location: userLocation, error: locationError, refresh, requestLocationAccess } =
+    useUserLocation();
   const greeting = useMemo(
     () => buildHomeGreeting(user?.displayName),
     [user?.displayName],
+  );
+  const nameAccentStyle = useMemo(
+    () =>
+      colorScheme === 'dark'
+        ? {
+            color: '#00E5FF',
+            textShadowColor: 'rgba(0, 229, 255, 0.45)',
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 8,
+          }
+        : {
+            color: Brand.primary,
+            textShadowColor: 'rgba(255, 0, 191, 0.35)',
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 6,
+          },
+    [colorScheme],
   );
   const profileInitials = useMemo(() => {
     const parts = user?.displayName?.trim().split(/\s+/).filter(Boolean) ?? [];
@@ -68,20 +94,21 @@ export default function UserHomeScreen() {
   const [hasCenteredOnUser, setHasCenteredOnUser] = useState(false);
   const [destination, setDestination] = useState<MapCoordinate | null>(null);
   const [selectedCharger, setSelectedCharger] = useState<Charger | null>(null);
-  const [chargerAnchor, setChargerAnchor] = useState<MapCoordinate>(DEFAULT_MAP_CENTER);
   const [isSearching, setIsSearching] = useState(false);
 
   const bottomInset = BottomTabInset + insets.bottom;
 
+  // Demo stations are remapped around the user (or Santa Monica until location arrives)
+  const chargerAnchor = userLocation ?? DEFAULT_MAP_CENTER;
+
   const chargers = useMemo(
     () => chargersNearLocation(chargerAnchor, chargerData).filter((c) => c.status === 'SAFE'),
-    [chargerAnchor],
+    [chargerAnchor.latitude, chargerAnchor.longitude],
   );
 
   useEffect(() => {
     if (userLocation && !hasCenteredOnUser) {
       setMapCenter(userLocation);
-      setChargerAnchor(userLocation);
       setHasCenteredOnUser(true);
     }
   }, [userLocation, hasCenteredOnUser]);
@@ -90,7 +117,6 @@ export default function UserHomeScreen() {
     refresh();
     if (userLocation) {
       setMapCenter({ ...userLocation });
-      setChargerAnchor(userLocation);
       setHasCenteredOnUser(true);
     }
   }
@@ -163,7 +189,13 @@ export default function UserHomeScreen() {
 
       {locationError && (
         <Pressable
-          onPress={refresh}
+          onPress={() => {
+            void requestLocationAccess().then((ok) => {
+              if (!ok) {
+                refresh();
+              }
+            });
+          }}
           style={[styles.locationBanner, Shadow, { backgroundColor: theme.card, top: insets.top + 56 }]}>
           <ThemedText type="caption" themeColor="textSecondary">
             Location is off — tap to try again so we can find stations near you
@@ -172,7 +204,7 @@ export default function UserHomeScreen() {
       )}
 
       <View style={[styles.legend, Shadow, { backgroundColor: theme.card, top: insets.top + 56 }]}>
-        <LegendDot color="#FF00BF" label="Checked stations" />
+        <LegendDot color="#FF00BF" label="Verified stations" />
       </View>
 
       <MapFloatingControls
@@ -184,10 +216,19 @@ export default function UserHomeScreen() {
         pointerEvents="box-none"
         style={[styles.sheetAnchor, { paddingBottom: bottomInset }]}>
         <View style={styles.sheetWidth}>
-          <BottomSheet>
+          <BottomSheet
+            onDismiss={
+              selectedCharger
+                ? () => {
+                    setSelectedCharger(null);
+                    setDestination(null);
+                  }
+                : undefined
+            }>
             {selectedCharger ? (
               <ChargerSheet
                 charger={selectedCharger}
+                userLocation={userLocation}
                 onClear={() => {
                   setSelectedCharger(null);
                   setDestination(null);
@@ -197,7 +238,7 @@ export default function UserHomeScreen() {
               <>
                 <ThemedText type="heading">
                   {greeting.lead},{' '}
-                  <ThemedText type="heading" style={styles.nameAccent}>
+                  <ThemedText type="heading" style={nameAccentStyle}>
                     {greeting.firstName}
                   </ThemedText>
                 </ThemedText>
@@ -212,7 +253,7 @@ export default function UserHomeScreen() {
                 />
 
                 <ThemedText type="caption" themeColor="textSecondary" style={styles.hint}>
-                  Or tap a pink pin on the map to see a station.
+                  Or tap a pink pin to see a verified station near you.
                 </ThemedText>
               </>
             )}
@@ -223,27 +264,57 @@ export default function UserHomeScreen() {
   );
 }
 
-function ChargerSheet({ charger, onClear }: { charger: Charger; onClear: () => void }) {
+function ChargerSheet({
+  charger,
+  userLocation,
+  onClear,
+}: {
+  charger: Charger;
+  userLocation: MapCoordinate | null;
+  onClear: () => void;
+}) {
+  const theme = useTheme();
+  const { isFavorite, addFavorite, removeFavorite } = useUserStations();
   const statusColor = customerStatusColor(charger.status);
   const title = customerChargerTitle(charger);
+  const plugsLabel = customerPlugsLabel(charger.plugs);
+  const powerLabel = customerPowerLabel(charger.power);
+  const chargeTimeLabel = customerChargeTimeEstimate(charger);
+  const saved = isFavorite(charger.id);
 
   return (
     <>
       <View style={styles.chargerHeader}>
         <View style={styles.chargerTitleBlock}>
           <ThemedText type="heading">{title}</ThemedText>
-          <View style={[styles.statusPill, { backgroundColor: `${statusColor}22` }]}>
-            <View style={[styles.statusDot, { backgroundColor: statusColor }]} />
-            <ThemedText type="caption" style={{ color: statusColor }}>
-              {customerStatusLabel(charger.status)}
-            </ThemedText>
+          <View style={styles.statusRow}>
+            <View style={[styles.statusPill, { backgroundColor: `${statusColor}22` }]}>
+              <View style={[styles.statusDot, { backgroundColor: statusColor }]} />
+              <ThemedText type="caption" style={{ color: statusColor }}>
+                {customerStatusLabel(charger.status)}
+              </ThemedText>
+            </View>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={saved ? 'Remove from favorites' : 'Add to favorites'}
+              onPress={() => (saved ? removeFavorite(charger.id) : addFavorite(charger.id))}
+              hitSlop={8}
+              style={styles.starButton}>
+              <SymbolView
+                name={{
+                  ios: saved ? 'star.fill' : 'star',
+                  android: saved ? 'star' : 'star_border',
+                  web: saved ? 'star' : 'star_border',
+                }}
+                size={18}
+                tintColor={saved ? Brand.primary : theme.textSecondary}
+              />
+            </Pressable>
           </View>
-        </View>
-        <Pressable onPress={onClear} hitSlop={8}>
-          <ThemedText type="small" themeColor="textSecondary">
-            Close
+          <ThemedText type="caption" themeColor="textSecondary">
+            {customerLastCheckedLabel(charger)}
           </ThemedText>
-        </Pressable>
+        </View>
       </View>
 
       <ThemedText type="small" themeColor="textSecondary">
@@ -251,9 +322,14 @@ function ChargerSheet({ charger, onClear }: { charger: Charger; onClear: () => v
       </ThemedText>
 
       <View style={styles.metaRow}>
-        {charger.power && (
+        {powerLabel && (
           <ThemedText type="caption" themeColor="textSecondary">
-            {charger.power}
+            {powerLabel}
+          </ThemedText>
+        )}
+        {chargeTimeLabel && (
+          <ThemedText type="caption" themeColor="textSecondary">
+            {chargeTimeLabel}
           </ThemedText>
         )}
         {charger.price && (
@@ -261,19 +337,23 @@ function ChargerSheet({ charger, onClear }: { charger: Charger; onClear: () => v
             {charger.price}
           </ThemedText>
         )}
-        {charger.plugs && (
+        {plugsLabel && (
           <ThemedText type="caption" themeColor="textSecondary">
-            {charger.plugs.join(' · ')}
+            {plugsLabel}
           </ThemedText>
         )}
       </View>
 
       <Button
-        label={
-          charger.status === 'SAFE' ? 'Get directions' : 'Find another station'
-        }
+        label={charger.status === 'SAFE' ? 'Get directions' : 'Find another station'}
         variant={charger.status === 'SAFE' ? 'primary' : 'secondary'}
-        onPress={charger.status === 'SAFE' ? undefined : onClear}
+        onPress={() => {
+          if (charger.status !== 'SAFE') {
+            onClear();
+            return;
+          }
+          void openDirectionsToStation(charger.location, userLocation);
+        }}
       />
     </>
   );
@@ -291,12 +371,6 @@ function LegendDot({ color, label }: { color: string; label: string }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  nameAccent: {
-    color: '#00E5FF',
-    textShadowColor: 'rgba(0, 229, 255, 0.45)',
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 8,
   },
   topBar: {
     position: 'absolute',
@@ -372,14 +446,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   chargerHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
     gap: Spacing.two,
   },
   chargerTitleBlock: {
-    flex: 1,
     gap: Spacing.two,
+  },
+  statusRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+  },
+  starButton: {
+    padding: 2,
   },
   statusPill: {
     alignSelf: 'flex-start',

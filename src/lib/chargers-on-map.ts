@@ -1,5 +1,5 @@
-import type { Charger } from '@/constants/chargers';
 import type { MapCoordinate } from '@/components/secure-route-map/types';
+import type { Charger } from '@/constants/chargers';
 
 export const CHARGER_STATUS_COLORS = {
   SAFE: '#00B89C',
@@ -7,7 +7,10 @@ export const CHARGER_STATUS_COLORS = {
   COMPROMISED: '#FF3B30',
 } as const;
 
-/** Place the catalog chargers near the user's map position so pins are always visible. */
+/**
+ * Remap demo catalog stations around the user's real position so the hackathon
+ * demo always shows nearby pins, while keeping each station's identity/status.
+ */
 export function chargersNearLocation(center: MapCoordinate, catalog: Charger[]): Charger[] {
   const offsets = [
     { lat: 0.006, lng: 0.008 },
@@ -19,7 +22,7 @@ export function chargersNearLocation(center: MapCoordinate, catalog: Charger[]):
   ];
 
   return catalog.map((charger, index) => {
-    const offset = offsets[index % offsets.length];
+    const offset = offsets[index % offsets.length]!;
     return {
       ...charger,
       location: {

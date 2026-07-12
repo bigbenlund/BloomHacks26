@@ -1,10 +1,12 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 import { AuthProvider, useAuth } from '@/contexts/auth-context';
 import { ColorSchemeProvider, useColorScheme } from '@/contexts/color-scheme-context';
+import { LocationProvider } from '@/contexts/location-context';
 import { SettingsNavProvider, useSettingsNav } from '@/contexts/settings-nav-context';
 import { UserStationsProvider } from '@/contexts/user-stations-context';
 import { Brand, Colors } from '@/constants/theme';
@@ -72,7 +74,9 @@ function RootLayoutContent() {
       <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
       <AnimatedSplashOverlay />
       <SettingsNavProvider>
-        <AppGate />
+        <LocationProvider>
+          <AppGate />
+        </LocationProvider>
       </SettingsNavProvider>
     </ThemeProvider>
   );
@@ -80,15 +84,20 @@ function RootLayoutContent() {
 
 export default function TabLayout() {
   return (
-    <ColorSchemeProvider>
-      <AuthProvider>
-        <RootLayoutContent />
-      </AuthProvider>
-    </ColorSchemeProvider>
+    <GestureHandlerRootView style={styles.root}>
+      <ColorSchemeProvider>
+        <AuthProvider>
+          <RootLayoutContent />
+        </AuthProvider>
+      </ColorSchemeProvider>
+    </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
   loading: {
     flex: 1,
     alignItems: 'center',
