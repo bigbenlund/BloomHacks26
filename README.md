@@ -3,6 +3,9 @@
 > **Cybersecurity for EV Charging.**
 >
 > EcoShield SecureRoute helps EV drivers find **safe, trusted charging stations** by combining live charger locations with cybersecurity intelligence powered by Google's Gemini AI.
+>
+> Visit our publically available demo:
+> https://hackathon26bloomhacks.web.app/
 
 ---
 
