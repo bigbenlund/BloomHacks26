@@ -3,6 +3,8 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppIcon } from '@/components/ui/themed-icon';
 import { collection, onSnapshot } from 'firebase/firestore';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+
 
 import { db } from '@/config/firebase';
 import { BottomSheet } from '@/components/bottom-sheet';
@@ -57,6 +59,8 @@ export default function UserHomeScreen() {
   const theme = useTheme();
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const router = useRouter();
+  const { selectedStationId } = useLocalSearchParams<{ selectedStationId?: string }>();
   const { user } = useAuth();
   const { openSettings } = useSettingsNav();
   const { location: userLocation, error: locationError, refresh, requestLocationAccess } =
@@ -200,6 +204,19 @@ export default function UserHomeScreen() {
       longitude: charger.location.lng,
     });
   }
+
+  // Handle station selection from other screens (like Favorites)
+  useEffect(() => {
+    if (selectedStationId && allStations.length > 0) {
+      const charger = allStations.find((c) => c.id === selectedStationId);
+      if (charger) {
+        handleSelectCharger(charger);
+        // Clear the routing param so navigating back/forth does not re-trigger selection
+        router.setParams({ selectedStationId: undefined });
+      }
+    }
+  }, [selectedStationId, allStations]);
+
 
   function findSafeChargingStation(excludeId?: string) {
     setIsSearching(true);

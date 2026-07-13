@@ -3,6 +3,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { collection, onSnapshot } from 'firebase/firestore';
+import { useRouter } from 'expo-router';
+
 
 import { db } from '@/config/firebase-app';
 import { ThemedText } from '@/components/themed-text';
@@ -40,11 +42,20 @@ function stationFromId(id: string, allChargers: Charger[], visitedAt?: number): 
 export default function FavoritesScreen() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   const { favoriteIds, recentVisits, isFavorite, addFavorite, removeFavorite, ready: stationsReady } =
     useUserStations();
 
   const [cloudChargers, setCloudChargers] = useState<Charger[]>([]);
   const [cloudReady, setCloudReady] = useState(false);
+
+  const handlePressStation = (stationId: string) => {
+    router.push({
+      pathname: '/',
+      params: { selectedStationId: stationId },
+    });
+  };
+
 
   // Subscribe to live chargers list in Firestore so dynamically loaded stations resolve correctly
   useEffect(() => {
@@ -133,12 +144,16 @@ export default function FavoritesScreen() {
                 {favorites.map((station) => (
                   <Card key={station.id} style={styles.stationCard}>
                     <View style={styles.stationRow}>
-                      <View style={styles.stationText}>
+                      <Pressable
+                        accessibilityRole="button"
+                        accessibilityLabel="View on map"
+                        style={({ pressed }) => [styles.stationText, pressed && styles.pressedText]}
+                        onPress={() => handlePressStation(station.id)}>
                         <ThemedText type="smallBold">{station.name}</ThemedText>
                         <ThemedText type="caption" themeColor="textSecondary">
                           {station.subtitle}
                         </ThemedText>
-                      </View>
+                      </Pressable>
                       <Pressable
                         accessibilityRole="button"
                         accessibilityLabel="Remove from favorites"
@@ -174,15 +189,19 @@ export default function FavoritesScreen() {
                   return (
                     <Card key={station.id} style={styles.stationCard}>
                       <View style={styles.stationRow}>
-                        <View style={styles.stationText}>
-                          <ThemedText type="smallBold">{station.name}</ThemedText>
-                          <ThemedText type="caption" themeColor="textSecondary">
-                            {station.visitedLabel}
-                          </ThemedText>
-                          <ThemedText type="caption" themeColor="textSecondary">
-                            {station.subtitle}
-                          </ThemedText>
-                        </View>
+                          <Pressable
+                            accessibilityRole="button"
+                            accessibilityLabel="View on map"
+                            style={({ pressed }) => [styles.stationText, pressed && styles.pressedText]}
+                            onPress={() => handlePressStation(station.id)}>
+                            <ThemedText type="smallBold">{station.name}</ThemedText>
+                            <ThemedText type="caption" themeColor="textSecondary">
+                              {station.visitedLabel}
+                            </ThemedText>
+                            <ThemedText type="caption" themeColor="textSecondary">
+                              {station.subtitle}
+                            </ThemedText>
+                          </Pressable>
                         <Pressable
                           accessibilityRole="button"
                           accessibilityLabel={saved ? 'Remove from favorites' : 'Add to favorites'}
@@ -267,6 +286,9 @@ const styles = StyleSheet.create({
   stationText: {
     flex: 1,
     gap: Spacing.half,
+  },
+  pressedText: {
+    opacity: 0.7,
   },
   iconButton: {
     width: 40,
